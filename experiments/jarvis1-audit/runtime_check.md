@@ -1,6 +1,6 @@
 # JARVIS-1 Runtime Check
 
-This file records a bounded runtime feasibility check for the official JARVIS-1 repository. It is not a full reproduction, simulator run, checkpoint load, or Minecraft evaluation.
+This file records a bounded runtime feasibility check for the official JARVIS-1 repository. It is not an official end-to-end reproduction, simulator run, checkpoint load, or Minecraft evaluation.
 
 ## Scope
 

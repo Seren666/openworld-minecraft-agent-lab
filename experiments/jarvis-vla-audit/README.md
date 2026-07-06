@@ -1,6 +1,6 @@
 # JARVIS-VLA Audit
 
-This folder records a bounded JARVIS-VLA paper and repository audit. It is not a full reproduction, not a training run, and not a claim of official Minecraft task success.
+This folder records a bounded JARVIS-VLA paper and repository audit. It is not an official end-to-end reproduction, not a training run, and not a claim of official Minecraft task success.
 
 ## Goal
 

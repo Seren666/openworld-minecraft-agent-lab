@@ -1,44 +1,47 @@
 # Roadmap
 
-## Phase 1: Reading Map
+This roadmap is intentionally practical and email-oriented. The goal is to show preparation, judgment, and a clear research direction before attempting expensive official training or evaluation.
 
-- Read and summarize DEPS, JARVIS-1, GROOT, OmniJARVIS, ROCKET-1, JARVIS-VLA, and OpenHA.
-- Extract task representations, action spaces, planning mechanisms, datasets, and evaluation protocols.
-- Build a comparison table for assumptions, reproducibility, and compute requirements.
+## Current Story
 
-## Phase 2: Lightweight Reproduction
+The repository now compares four interfaces for Minecraft open-world agents:
 
-- Implement a DEPS-style planner demo with prompt examples and small task graphs.
-- Add a JARVIS-1-style memory-augmented planning demo using toy memory and aggregate-only official memory analysis.
-- Add a ROCKET-1-style visual prompt demo using synthetic masks, interaction types, and temporal context.
-- Add a JARVIS-VLA-style action-interface demo using toy observations, action schemas, and a tiny GPU scorer.
-- Set up MineStudio and document installation issues on local and AutoDL environments.
-- Build a Minecraft task taxonomy and dependency graph for common survival tasks.
+```text
+DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual grounding -> JARVIS-VLA action prediction
+```
 
-## Phase 3: Experiment Tracking
+The immediate aim is to make this story clear enough for advisor outreach.
 
-- Keep small Markdown run logs under `experiments/`.
-- Store small screenshots that explain setup or qualitative behavior.
-- Keep large datasets, checkpoints, videos, and generated outputs outside Git.
-- Track infrastructure blockers separately from research results, especially CUDA/PyTorch compatibility and simulator setup.
+## Next Steps Before Email
 
-## Phase 4: Mini VLA Sandbox
+1. Polish paper notes and make terminology consistent across `papers/`.
+2. Add a GROOT reading note focused on video instruction, goal representation, and open-ended behavior.
+3. Add an OmniJARVIS reading note focused on unified VLA tokenization and generalist Minecraft control.
+4. Optionally add an OpenHA reading note focused on action space, hierarchy, and evaluation design.
+5. Add one compact diagram or table that links planning, memory, visual grounding, and action prediction.
 
-- Create a compact gridworld environment for vision-language-action experiments.
-- Compare action abstraction choices before moving to heavier Minecraft experiments.
-- Record failure cases and evaluation notes.
+## If An Advisor Responds
 
-## Phase 5: Presentation
+Choose one focused direction instead of starting large training immediately:
 
-- Prepare diagrams, paper summaries, and reproduction findings for GitHub.
-- Convert research notes into a clear project narrative.
-- Draft email and outreach materials for advisors or collaborators.
-- Emphasize lightweight evidence honestly: planning traces, memory analysis, environment audit, and known blockers.
+| Direction | Possible student-scale work |
+| --- | --- |
+| Benchmark evaluation | Define a small task set and compare failure modes across interfaces. |
+| Memory retrieval analysis | Study when retrieved memory helps or hurts long-horizon planning. |
+| Failure case analysis | Build a taxonomy for tool, recipe, spatial, and action-selection failures. |
+| Visual prompt interface | Extend the ROCKET-1 toy demo into more structured mask/affordance examples. |
+| Action space comparison | Compare discrete action schemas for Minecraft-style VLA control. |
 
-## Immediate Next Steps
+## Deferred Until There Is A Clear Research Direction
 
-- Compare DEPS-style dependency planning with JARVIS-1-style memory retrieval on shared Minecraft tasks.
-- Use the working Blackwell-compatible PyTorch CUDA 12.8 environment as the starting point for future GPU-backed Minecraft agent code.
-- Extend the ROCKET-1 visual prompt demo into a small comparison with DEPS/JARVIS-style subgoal planning.
-- Compare high-level planning, memory retrieval, visual prompting, and action prediction on the same Minecraft task set.
-- Defer full MineStudio and JARVIS-1 simulator runs until dependency, Java, rendering, and checkpoint requirements are controlled.
+- Full official model training.
+- Large checkpoint or dataset downloads.
+- Long Minecraft rollout jobs.
+- Multi-GPU experiments.
+- Large video generation.
+
+## Engineering Rules
+
+- Keep external repositories, environments, caches, logs, checkpoints, datasets, and temporary files under `/root/autodl-tmp` on AutoDL.
+- Keep GitHub focused on notes, small scripts, toy JSON/config files, summarized logs, and small screenshots or diagrams.
+- Do not commit model weights, checkpoints, datasets, raw videos, external repository code, secrets, API keys, passwords, or private machine information.

@@ -1,6 +1,6 @@
 # ROCKET-1 Audit
 
-This folder records a bounded ROCKET-1 repository and feasibility audit. It is not a full reproduction, not a training run, and not a claim of official Minecraft task success.
+This folder records a bounded ROCKET-1 repository and feasibility audit. It is not an official end-to-end reproduction, not a training run, and not a claim of official Minecraft task success.
 
 ## Goal
 
