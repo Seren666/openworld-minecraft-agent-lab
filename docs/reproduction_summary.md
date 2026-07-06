@@ -3,8 +3,10 @@
 This repository focuses on research preparation, not claims of official benchmark reproduction. The main story is:
 
 ```text
-planning -> memory -> visual grounding -> action prediction
+planning -> memory -> visual grounding -> action prediction -> dynamic action-space selection
 ```
+
+This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
 
 ## Completed Lightweight Work
 
@@ -18,20 +20,25 @@ planning -> memory -> visual grounding -> action prediction
 | JARVIS-VLA audit | Bounded feasibility check complete | Official repo audit, vLLM/MineStudio rollout notes, syntax smoke | Official inference requires 7B-scale model serving, datasets, MineStudio, rendering, and careful output storage. |
 | JARVIS-VLA action demo | Lightweight local demo complete | Toy action schema, rule-based selector, generated Markdown trace | Demonstrates the VLA action-interface idea without official model checkpoints. |
 | JARVIS-VLA GPU action scorer | Toy GPU scorer complete | Tiny deterministic PyTorch scorer ran one forward pass on Blackwell | Infrastructure evidence only; not JARVIS-VLA inference. |
+| OpenHA / CrossAgent bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note | Conceptual bridge only; no weights, datasets, official rollout, SFT, or GRPO training. |
+| World models / diffusion note | Reading direction documented | Concise world-model note | Next-step reading only; no world-model or diffusion reproduction. |
 | MineStudio setup | Bounded setup checks blocked | Smoke tests, second-pass install notes | Full dependency setup remains unresolved; simulator imports need more controlled setup. |
 | GPU sanity | Infrastructure check complete | Old torch failure documented; modern cu128 success documented | `torch 2.11.0+cu128` under `/root/autodl-tmp` supports `sm_120` and ran a small CUDA tensor workload. |
 
 ## Partially Blocked Official Systems
 
-- MC-Planner, JARVIS-1, ROCKET-1, JARVIS-VLA, and MineStudio all depend on substantial simulator, rendering, checkpoint, dataset, or model-serving infrastructure.
+- MC-Planner, JARVIS-1, ROCKET-1, JARVIS-VLA, OpenHA/CrossAgent, and MineStudio all depend on substantial simulator, rendering, checkpoint, dataset, training, or model-serving infrastructure for official execution.
 - Earlier pinned PyTorch stacks may not support the AutoDL Blackwell `sm_120` GPU.
 - MineStudio still needs a stable dependency strategy before serious benchmark or rollout work.
 - JARVIS-VLA and ROCKET-1 official inference should wait until model weights, storage, rendering, and output paths are intentionally controlled.
+- OpenHA/CrossAgent official work should wait until action-space scope, model assets, datasets, and training/evaluation budget are defined.
 
 ## Safe To Mention In Email
 
 - I audited official or relevant repositories.
 - I built lightweight demos for planning, memory, visual grounding, and action prediction.
+- I added a paper/repo bridge from action prediction to OpenHA/CrossAgent action-space hierarchy and GRPO-style post-training.
+- I added world-model/diffusion notes as a future reading direction.
 - I documented blockers for official end-to-end reproduction attempts.
 - I kept external repos, environments, caches, large assets, and logs outside Git.
 - I validated a modern Blackwell-compatible PyTorch CUDA environment for small infrastructure checks.
@@ -39,6 +46,7 @@ planning -> memory -> visual grounding -> action prediction
 ## Do Not Overstate
 
 - Do not claim official end-to-end reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, or MineStudio.
+- Do not claim official OpenHA/CrossAgent execution, SFT, GRPO training, or world-model reproduction.
 - Do not claim official Minecraft task success.
 - Do not claim official model training or paper-metric matching.
 - Do not claim toy GPU scorers are official model inference.
@@ -46,12 +54,13 @@ planning -> memory -> visual grounding -> action prediction
 
 ## Next Recommended Experiment
 
-Run one compact comparison across four interfaces on the same task set:
+Run one compact comparison across five interfaces on the same task set:
 
 - DEPS-style dependency planning
 - JARVIS-1-style memory retrieval
 - ROCKET-1-style visual/mask prompting
 - JARVIS-VLA-style action prediction
+- OpenHA/CrossAgent-style action-space selection
 
 This is low-cost, email-relevant, and does not require simulator rendering or large assets.
 

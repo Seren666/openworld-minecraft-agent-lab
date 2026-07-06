@@ -6,9 +6,10 @@ Use this checklist before writing emails, README text, slides, or summaries.
 
 - I audited official or relevant repositories for Minecraft agent papers.
 - I built lightweight demos to clarify paper ideas.
-- I studied DEPS, JARVIS-1, ROCKET-1, and JARVIS-VLA.
+- I studied DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, and the latest OpenHA/CrossAgent direction.
 - I documented blockers for official reproduction attempts.
 - I explored planning, memory, visual grounding, and action-interface questions.
+- I connected action prediction to action-space hierarchy, GRPO-style post-training, and world-model reading directions.
 - I ran bounded feasibility checks on an AutoDL machine.
 - I validated that a modern PyTorch CUDA 12.8 environment can run a tiny tensor workload on the Blackwell GPU.
 - I kept large assets, external repos, caches, and temporary files outside the GitHub repository.
@@ -20,6 +21,10 @@ Use this checklist before writing emails, README text, slides, or summaries.
 - I fully reproduced ROCKET-1.
 - I fully reproduced JARVIS-VLA.
 - I fully reproduced MineStudio.
+- I fully reproduced OpenHA.
+- I trained CrossAgent.
+- I ran GRPO post-training.
+- I reproduced a world model or diffusion model.
 - I trained the official models.
 - I ran the official Minecraft evaluation.
 - I matched paper results.
@@ -35,11 +40,13 @@ Use this checklist before writing emails, README text, slides, or summaries.
 | proved the method works | illustrated the core interface idea with a toy demo |
 | GPU experiment validates the model | GPU check demonstrates infrastructure readiness |
 | completed MineStudio setup | ran bounded MineStudio smoke tests and documented unresolved blockers |
+| trained CrossAgent | audited OpenHA/CrossAgent and identified SFT + GRPO as next reading targets |
+| reproduced a world model | added a concise world-model reading note |
 
 ## Email Guardrail
 
 The strongest honest statement is:
 
 ```text
-I prepared a research-oriented repository with reading notes, repository audits, bounded feasibility checks, and lightweight toy demos that connect planning, memory, visual grounding, and action prediction for Minecraft open-world agents.
+I prepared a research-oriented repository with reading notes, repository audits, bounded feasibility checks, and lightweight toy demos that connect planning, memory, visual grounding, action prediction, action-space hierarchy, and future world-model directions for Minecraft open-world agents.
 ```

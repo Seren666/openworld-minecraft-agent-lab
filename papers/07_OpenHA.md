@@ -2,7 +2,9 @@
 
 ## Reading Status
 
-Not started.
+Superseded by `papers/07_OpenHA_CrossAgent.md`.
+
+This placeholder is kept because the original repository scaffold included `papers/07_OpenHA.md`. The current email-ready note combines OpenHA with CrossAgent because the latest direction is action-space hierarchy plus dynamic cross-level action selection.
 
 ## Core Questions
 
@@ -21,3 +23,8 @@ Not started.
 ## Reproduction Angle
 
 Map hierarchy choices onto the Minecraft task dependency graph and compare them with DEPS-style planning.
+
+For the current bounded audit, see:
+
+- `papers/07_OpenHA_CrossAgent.md`
+- `docs/latest_direction_bridge.md`
