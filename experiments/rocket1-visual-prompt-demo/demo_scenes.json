@@ -1,0 +1,79 @@
+[
+  {
+    "id": "correct_tree",
+    "title": "Mine the correct tree among multiple objects",
+    "grid_size": [7, 5],
+    "objects": [
+      {"label": "O", "name": "oak tree", "cells": [[1, 1], [1, 2]], "color": "#4f8a3d"},
+      {"label": "B", "name": "birch tree", "cells": [[4, 1], [4, 2]], "color": "#b9c76b"},
+      {"label": "A", "name": "agent", "cells": [[2, 4]], "color": "#4b6cb7"}
+    ],
+    "language_instruction": "Mine the tree.",
+    "ambiguity": "There are two visible trees, and language alone does not specify oak versus birch.",
+    "mask_prompt": {"target": "oak tree", "cells": [[1, 1], [1, 2]], "interaction": "Mine", "obj_id": 2},
+    "temporal_context": "Previous frame showed the cursor moving toward the left tree.",
+    "why_visual_prompt_helps": "The mask fixes the spatial target while the interaction type says to mine rather than approach or use."
+  },
+  {
+    "id": "furnace_not_table",
+    "title": "Approach the furnace instead of the crafting table",
+    "grid_size": [7, 5],
+    "objects": [
+      {"label": "F", "name": "furnace", "cells": [[5, 1]], "color": "#777777"},
+      {"label": "C", "name": "crafting table", "cells": [[2, 1]], "color": "#a46a3f"},
+      {"label": "A", "name": "agent", "cells": [[3, 4]], "color": "#4b6cb7"}
+    ],
+    "language_instruction": "Go to the station and use it.",
+    "ambiguity": "Both furnace and crafting table are valid stations, but only the furnace supports smelting.",
+    "mask_prompt": {"target": "furnace", "cells": [[5, 1]], "interaction": "Interact", "obj_id": 3},
+    "temporal_context": "Previous plan step was smelt iron ore, so the station should be the furnace.",
+    "why_visual_prompt_helps": "The mask selects the furnace, and the interaction type indicates right-click/use instead of mining."
+  },
+  {
+    "id": "switch_stone_to_iron",
+    "title": "Switch target from stone to iron ore",
+    "grid_size": [8, 5],
+    "objects": [
+      {"label": "S", "name": "stone", "cells": [[2, 1], [2, 2]], "color": "#8a8a8a"},
+      {"label": "I", "name": "iron ore", "cells": [[5, 1], [5, 2]], "color": "#d8a35d"},
+      {"label": "A", "name": "agent", "cells": [[3, 4]], "color": "#4b6cb7"}
+    ],
+    "language_instruction": "Now mine the ore.",
+    "ambiguity": "The previous target was stone, so a policy may continue mining the old block if context is not updated.",
+    "mask_prompt": {"target": "iron ore", "cells": [[5, 1], [5, 2]], "interaction": "Mine", "obj_id": 2},
+    "temporal_context": "Previous mask was on stone; current mask moves to iron ore.",
+    "previous_mask": {"target": "stone", "cells": [[2, 1], [2, 2]]},
+    "why_visual_prompt_helps": "The temporal mask transition communicates target switching more directly than a short language update."
+  },
+  {
+    "id": "avoid_wrong_block",
+    "title": "Avoid mining the wrong block",
+    "grid_size": [8, 5],
+    "objects": [
+      {"label": "K", "name": "coal ore", "cells": [[1, 1]], "color": "#2f2f2f"},
+      {"label": "I", "name": "iron ore", "cells": [[3, 1]], "color": "#d8a35d"},
+      {"label": "D", "name": "diamond ore", "cells": [[5, 1]], "color": "#4cc7cf"},
+      {"label": "A", "name": "agent", "cells": [[3, 4]], "color": "#4b6cb7"}
+    ],
+    "language_instruction": "Mine the useful ore.",
+    "ambiguity": "Coal, iron, and diamond are all useful, but the intended subgoal is iron for tool progression.",
+    "mask_prompt": {"target": "iron ore", "cells": [[3, 1]], "interaction": "Mine", "obj_id": 2},
+    "temporal_context": "Current plan says obtain iron ingot before returning to diamond.",
+    "why_visual_prompt_helps": "The mask prevents a visually nearby but strategically wrong target from being selected."
+  },
+  {
+    "id": "door_not_wall",
+    "title": "Use a shelter door instead of breaking a wall",
+    "grid_size": [8, 5],
+    "objects": [
+      {"label": "W", "name": "shelter wall", "cells": [[2, 1], [3, 1], [4, 1], [2, 2], [4, 2]], "color": "#7a5a3a"},
+      {"label": "R", "name": "door", "cells": [[3, 2]], "color": "#c4914b"},
+      {"label": "A", "name": "agent", "cells": [[3, 4]], "color": "#4b6cb7"}
+    ],
+    "language_instruction": "Get inside the shelter.",
+    "ambiguity": "A language-only policy may break a wall or path to the wrong cell instead of using the door.",
+    "mask_prompt": {"target": "door", "cells": [[3, 2]], "interaction": "Interact", "obj_id": 3},
+    "temporal_context": "The agent is outside at night and should preserve the shelter structure.",
+    "why_visual_prompt_helps": "The door mask and use interaction encode both the correct object and the correct affordance."
+  }
+]

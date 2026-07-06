@@ -12,6 +12,7 @@ The current AutoDL machine has powerful Blackwell GPUs. Before attempting Minecr
 | --- | --- |
 | `gpu_check.py` | Small PyTorch CUDA sanity script |
 | `gpu_check_log.md` | Summary of the bounded AutoDL GPU check |
+| `blackwell_torch_cu128.md` | Successful modern PyTorch CUDA 12.8 test under `/root/autodl-tmp` |
 
 ## Run
 
@@ -23,3 +24,7 @@ python experiments/gpu-sanity/gpu_check.py
 ```
 
 The script writes a compact Markdown log by default. It does not download data, load model weights, or run training.
+
+## Current Finding
+
+The old JARVIS-1 pinned `torch 2.2.1+cu121` stack detects the Blackwell GPU but cannot execute kernels. A separate `torch 2.11.0+cu128` environment under `/root/autodl-tmp` does support `sm_120` and passed a tiny CUDA tensor workload.

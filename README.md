@@ -14,7 +14,7 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 | 2 | JARVIS-1 | Open-world multimodal agent behavior in Minecraft |
 | 3 | GROOT | Scalable policy and skill learning for open-ended tasks |
 | 4 | OmniJARVIS | Generalist Minecraft agent capabilities |
-| 5 | ROCKET-1 | Data, policy, and evaluation for open-world agents |
+| 5 | ROCKET-1 | Visual-temporal context prompting for grounded interaction |
 | 6 | JARVIS-VLA | Vision-language-action modeling for Minecraft control |
 | 7 | OpenHA | Hierarchical agent design and open-world evaluation |
 
@@ -26,7 +26,9 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 | JARVIS-1 audit | Runtime audit complete; official execution blocked | Cloned JARVIS-1, recorded upstream commit, inspected requirements, ran safe import/help checks, and tested the official-style PyTorch stack. | `experiments/jarvis1-audit/feasibility_report.md`, `experiments/jarvis1-audit/runtime_check.md`, `papers/02_JARVIS-1.md` | Use memory analysis as the near-term artifact; defer simulator evaluation until CUDA, MCP, rendering, and checkpoints are stable. |
 | JARVIS-1 memory demo | Lightweight demo complete | Analyzed official fixed memory through aggregate stats and built an original toy memory-augmented planning demo. | `experiments/jarvis1-memory-demo/memory_analysis.md`, `experiments/jarvis1-memory-demo/logs/example_run.md` | Compare memory retrieval with DEPS-style dependency planning on a few shared tasks. |
 | MineStudio setup | Second-pass install still blocked | Cloned MineStudio, created `minestudio-test`, verified no-deps source import, and ran a bounded second-pass dependency check. | `experiments/minestudio-setup/install_notes.md`, `experiments/minestudio-setup/second_pass_install.md`, `experiments/minestudio-setup/run_logs.md` | Free disk space, install dependencies in smaller groups, then test PyTorch, OpenCV, `MinecraftSim`, and rendering. |
-| GPU sanity check | Infrastructure blocked by PyTorch/CUDA compatibility | Confirmed Blackwell GPUs are visible, but official pinned PyTorch cannot execute CUDA kernels; newer CUDA 12.8 install failed due root filesystem space. | `experiments/gpu-sanity/gpu_check_log.md`, `experiments/jarvis1-audit/runtime_check.md` | Install a Blackwell-compatible PyTorch build after freeing or expanding root filesystem space. |
+| ROCKET-1 audit | Bounded repository audit complete | Cloned ROCKET-1, recorded upstream commit, inspected README, dependencies, SAM-2/MCP requirements, and feasible demo paths. | `experiments/rocket1-audit/feasibility_report.md`, `papers/05_ROCKET-1.md` | Defer official inference until SAM-2 checkpoints, model weights, simulator, and rendering are intentionally prepared. |
+| ROCKET-1 visual prompt demo | Lightweight demo complete | Built a synthetic grid demo comparing language-only instructions with mask/interaction prompts. | `experiments/rocket1-visual-prompt-demo/logs/example_run.md`, `experiments/rocket1-visual-prompt-demo/assets/` | Compare mask prompting with DEPS/JARVIS memory planning on shared Minecraft subgoals. |
+| GPU sanity check | Modern PyTorch CUDA works; official pinned stacks still need care | Confirmed Blackwell GPUs are visible; old JARVIS pinned torch fails, but `torch 2.11.0+cu128` under `/root/autodl-tmp` executes a CUDA tensor workload. | `experiments/gpu-sanity/gpu_check_log.md`, `experiments/gpu-sanity/blackwell_torch_cu128.md` | Use a Blackwell-compatible PyTorch stack for future ROCKET-1/MineStudio attempts where compatible. |
 | Minecraft task dependency analysis | In progress | Organize tasks, dependencies, failure cases, and gameplay notes. | `experiments/minecraft-task-analysis/` | Expand dependency graph examples. |
 | Mini VLA gridworld | Planned | Create a lightweight VLA-style sandbox before Minecraft-scale experiments. | `experiments/mini-vla-gridworld/` | Define minimal action and observation space. |
 | Benchmark evaluation | Planned | Compare tasks, metrics, and failure modes across systems. | `docs/reproduction_summary.md` | Add evaluation criteria after MineStudio setup. |
@@ -35,6 +37,7 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 
 - DEPS planner demo
 - JARVIS-1 memory-augmented planning demo
+- ROCKET-1 visual prompt demo
 - MineStudio setup blockers
 - Minecraft task dependency analysis
 
