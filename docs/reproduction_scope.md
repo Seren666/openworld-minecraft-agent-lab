@@ -2,7 +2,7 @@
 
 Use this document to keep repository wording aligned with the actual evidence in the paper notes, repository audits, lightweight demos, and summarized logs.
 
-## In Scope
+## What This Repository Demonstrates
 
 - Official or relevant repository audits for Minecraft agent papers.
 - Lightweight demos that clarify paper ideas without claiming official reproduction.
@@ -13,7 +13,7 @@ Use this document to keep repository wording aligned with the actual evidence in
 - Infrastructure notes for a modern PyTorch CUDA 12.8 environment on the Blackwell GPU.
 - Repository hygiene that keeps large assets, external repos, caches, temporary files, secrets, and private machine details outside Git.
 
-## Out Of Scope
+## What This Repository Does Not Claim
 
 - Full official reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, MineStudio, or OpenHA.
 - CrossAgent training.
