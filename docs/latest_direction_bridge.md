@@ -120,15 +120,15 @@ This repository does not reproduce a world model. The correct positioning is tha
 | CrossAgent official training | Not lightweight | SFT/GRPO/RL-style training needs datasets, compute, model checkpoints, and careful experiment management. |
 | CrossAgent conceptual toy demo | Lightweight | A small script could compare high-level, mid-level, and low-level action choices on toy task states. |
 | World-model reproduction | Not lightweight | Requires video/model training or large pretrained assets. |
-| World-model reading note | Lightweight | Useful for advisor email positioning without claiming unsupported results. |
+| World-model reading note | Lightweight | Useful for research positioning without claiming unsupported results. |
 
-## What To Study Next Before Contacting A Professor
+## Next Study Targets
 
 1. Read OpenHA for action-space hierarchy and Chain of Action.
 2. Read CrossAgent for dynamic cross-level action selection, SFT, and GRPO post-training.
 3. Compare OpenHA/CrossAgent with the existing JARVIS-VLA action-interface demo.
 4. Read one or two world-model or video-diffusion-for-agents papers to understand predictive simulation.
-5. Prepare a short question for outreach: how should Minecraft agents choose between high-level skills, mid-level symbolic actions, and low-level controls?
+5. Refine the core research question: how should Minecraft agents choose between high-level skills, mid-level symbolic actions, and low-level controls?
 
 ## Safe Summary
 

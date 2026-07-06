@@ -2,7 +2,7 @@
 
 ## Summary
 
-ROCKET-1 is relevant and inspectable, but official inference is not a quick bounded reproduction on the current AutoDL setup. The smallest useful result before email outreach is a repository audit plus a lightweight local visual/mask prompting demo.
+ROCKET-1 is relevant and inspectable, but official inference is not a quick bounded reproduction on the current AutoDL setup. The smallest useful result for this repository is a repository audit plus a lightweight local visual/mask prompting demo.
 
 ## Can We Run A Minimal Official Demo Quickly?
 
@@ -34,7 +34,7 @@ A separate infrastructure test showed that `torch 2.11.0+cu128` installed under 
 
 This helps future ROCKET-1 setup, but it is not a ROCKET-1 result.
 
-## What Can Be Reproduced Before Email Outreach?
+## What Can Be Reproduced In A Bounded Pass?
 
 Safe and useful:
 
@@ -63,4 +63,4 @@ Not worth forcing now:
 
 ## Conclusion
 
-For the first advisor email, the honest artifact is the audit plus a toy visual prompt demo. Official ROCKET-1 execution should be deferred until the simulator, SAM-2 checkpoints, model weights, and modern PyTorch environment are intentionally prepared.
+For the research preparation record, the honest artifact is the audit plus a toy visual prompt demo. Official ROCKET-1 execution should be deferred until the simulator, SAM-2 checkpoints, model weights, and modern PyTorch environment are intentionally prepared.

@@ -30,7 +30,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 
 ## What This Repository Is
 
-- A research preparation repository for advisor outreach.
+- A research preparation record for Minecraft open-world agent research.
 - A reading map for Minecraft open-world agents and VLA-style systems.
 - A set of bounded repository audits for official codebases.
 - A collection of lightweight toy demos that clarify planning, memory, visual grounding, and action-interface ideas.
@@ -64,13 +64,13 @@ planning -> memory -> visual grounding -> action prediction -> dynamic action-sp
 
 The main synthesis documents are `docs/four_interface_comparison.md` and `docs/latest_direction_bridge.md`.
 
-## Email Materials
+## Project Documents
 
-- `docs/email_project_summary.md`
+- `docs/project_overview.md`
 - `docs/four_interface_comparison.md`
 - `docs/latest_direction_bridge.md`
 - `docs/world_model_diffusion_notes.md`
-- `docs/claims_checklist.md`
+- `docs/reproduction_scope.md`
 - `docs/reproduction_summary.md`
 
 ## Repository Layout
@@ -78,7 +78,7 @@ The main synthesis documents are `docs/four_interface_comparison.md` and `docs/l
 ```text
 papers/       Reading notes for core papers and systems
 experiments/  Lightweight reproductions and experiment records
-docs/         Research maps, summaries, setup notes, and email material
+docs/         Research maps, summaries, setup notes, and reproduction-scope records
 scripts/      Small helper scripts for setup, demos, and log collection
 assets/       Figures, diagrams, and small presentation media
 ```

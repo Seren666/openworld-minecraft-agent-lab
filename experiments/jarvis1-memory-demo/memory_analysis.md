@@ -71,4 +71,4 @@ Memory can also hurt planning:
 
 ## Reproduction Interpretation
 
-This analysis is lightweight and evidence-based. It supports a research email by showing that the released JARVIS-1 memory artifact can be inspected and connected to planning behavior, but it does not reproduce official JARVIS-1 evaluation.
+This analysis is lightweight and evidence-based. It supports the research preparation record by showing that the released JARVIS-1 memory artifact can be inspected and connected to planning behavior, but it does not reproduce official JARVIS-1 evaluation.

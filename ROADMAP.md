@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap is intentionally practical and email-oriented. The goal is to show preparation, judgment, and a clear research direction before attempting expensive official training or evaluation.
+This roadmap is intentionally practical and research-oriented. The goal is to keep the repository focused on preparation, judgment, and clear research direction before attempting expensive official training or evaluation.
 
 ## Current Story
 
@@ -12,9 +12,9 @@ DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual grounding -> JARVIS-VLA acti
 
 This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
 
-The immediate aim is to make this story clear enough for advisor outreach.
+The immediate aim is to make this story clear enough for a researcher to understand the project scope quickly.
 
-## Next Steps Before Email
+## Near-Term Research Preparation
 
 1. Polish paper notes and make terminology consistent across `papers/`.
 2. Add a GROOT reading note focused on video instruction, goal representation, and open-ended behavior.
@@ -22,7 +22,7 @@ The immediate aim is to make this story clear enough for advisor outreach.
 4. Refine the OpenHA/CrossAgent bridge into a compact action-space comparison diagram.
 5. Add a short reading comparison between world models, video diffusion, and model-based RL for open-world agents.
 
-## If An Advisor Responds
+## Focused Future Research Directions
 
 Choose one focused direction instead of starting large training immediately:
 

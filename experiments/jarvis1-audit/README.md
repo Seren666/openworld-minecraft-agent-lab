@@ -4,7 +4,7 @@ This folder records a bounded JARVIS-1 repository audit and feasibility check. I
 
 ## Goal
 
-Determine what can realistically be run on the current AutoDL machine and identify the smallest useful evidence artifact for a research email.
+Determine what can realistically be run on the current AutoDL machine and identify the smallest useful evidence artifact for the research preparation record.
 
 ## Upstream Repository
 
@@ -42,7 +42,7 @@ External code, large assets, checkpoints, datasets, raw logs, and videos stay ou
 
 A minimal official demo is not immediately ready on the current machine. The repository is inspectable, but useful execution requires dependency installation, Blackwell-compatible PyTorch, MCP/Minecraft setup, STEVE-1 weights, and likely rendering configuration.
 
-The smallest meaningful email/GitHub artifact is a transparent feasibility report plus a fixed-memory planning inspection, not an end-to-end Minecraft run.
+The smallest meaningful repository artifact is a transparent feasibility report plus a fixed-memory planning inspection, not an end-to-end Minecraft run.
 
 ## Files
 

@@ -30,7 +30,7 @@ LLM planning alone is not enough because the generated plan still needs:
 
 ## What This Demo Tries To Show
 
-This lightweight DEPS-style planning demo focuses on the planning record, not Minecraft execution. It demonstrates whether we understand the paper's planning loop well enough to produce useful email evidence:
+This lightweight DEPS-style planning demo focuses on the planning record, not Minecraft execution. It demonstrates whether we understand the paper's planning loop well enough to produce useful research evidence:
 
 - Decompose a task into dependencies.
 - Explain why each prerequisite matters.
@@ -75,7 +75,7 @@ Success for this pass means:
 - The official MC-Planner repository is identified and inspected.
 - Setup requirements and blockers are documented.
 - A clean planning-only DEPS-style record is produced for multiple Minecraft tasks.
-- The record is useful for a research email without overstating reproduction completeness.
+- The record is useful for research preparation without overstating reproduction completeness.
 
 Failure or blocker conditions include:
 

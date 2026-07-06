@@ -13,7 +13,7 @@ MineStudio is a CraftJarvis toolkit for Minecraft agent research. It matters for
 - Inference utilities
 - Benchmark and failure-analysis workflows
 
-For an advisor email, the useful evidence is not a long training run. The useful evidence is whether the toolkit can be installed, imported, and used as a plausible engineering base for later Minecraft agent experiments.
+For this research preparation record, the useful evidence is not a long training run. The useful evidence is whether the toolkit can be installed, imported, and used as a plausible engineering base for later Minecraft agent experiments.
 
 ## Upstream Repository
 

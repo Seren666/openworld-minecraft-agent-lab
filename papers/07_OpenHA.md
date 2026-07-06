@@ -4,7 +4,7 @@
 
 Superseded by `papers/07_OpenHA_CrossAgent.md`.
 
-This placeholder is kept because the original repository scaffold included `papers/07_OpenHA.md`. The current email-ready note combines OpenHA with CrossAgent because the latest direction is action-space hierarchy plus dynamic cross-level action selection.
+This placeholder is kept because the original repository scaffold included `papers/07_OpenHA.md`. The current research-facing note combines OpenHA with CrossAgent because the latest direction is action-space hierarchy plus dynamic cross-level action selection.
 
 ## Core Questions
 

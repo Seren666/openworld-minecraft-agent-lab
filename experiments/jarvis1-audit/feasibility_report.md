@@ -69,7 +69,7 @@ There is strong overlap:
 
 JARVIS-1 adds multimodal perception and memory, so the setup is broader than the DEPS / MC-Planner pass.
 
-## Smallest Meaningful Result For Email/GitHub
+## Smallest Meaningful Repository Result
 
 The best small result is:
 
@@ -108,4 +108,4 @@ This would demonstrate understanding without claiming execution.
 
 ## Recommended Next Step
 
-Do not attempt full JARVIS-1 execution before stabilizing MineStudio or a shared Minecraft rendering stack. For the next bounded pass, create a small script that reads `memory.json` and prints fixed-memory plans for tasks like `wooden_pickaxe`, `iron_pickaxe`, and `diamond_pickaxe`. That gives useful research-email evidence without touching large assets or simulator execution.
+Do not attempt full JARVIS-1 execution before stabilizing MineStudio or a shared Minecraft rendering stack. For the next bounded pass, create a small script that reads `memory.json` and prints fixed-memory plans for tasks like `wooden_pickaxe`, `iron_pickaxe`, and `diamond_pickaxe`. That gives useful research-preparation evidence without touching large assets or simulator execution.

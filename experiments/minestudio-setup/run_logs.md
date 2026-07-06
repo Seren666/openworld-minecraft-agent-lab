@@ -119,4 +119,4 @@ These files were not committed.
 
 ### Interpretation
 
-MineStudio remains useful for future benchmark evaluation, but it should be deferred until after the first research email. The current blockers are dependency resolution, disk space, PyTorch/CUDA compatibility, OpenCV, Java PATH activation, and rendering setup.
+MineStudio remains useful for future benchmark evaluation, but it should be deferred until the dependency strategy is stable. The current blockers are dependency resolution, disk space, PyTorch/CUDA compatibility, OpenCV, Java PATH activation, and rendering setup.

@@ -74,7 +74,7 @@ Together, these papers form a path from planning, to memory, to visual grounding
 - A toy VLA action-interface demo was created.
 - A tiny GPU-backed toy action scorer ran one forward pass on the Blackwell GPU.
 
-## What Can Be Realistically Reproduced Before Email Outreach
+## What Can Be Realistically Reproduced In A Bounded Pass
 
 Short term:
 

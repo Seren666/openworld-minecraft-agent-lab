@@ -4,7 +4,7 @@ This folder contains a lightweight JARVIS-1-style memory-augmented planning demo
 
 ## Purpose
 
-JARVIS-1 is relevant to this project because it connects high-level planning with multimodal observations, embodied control, and memory. The official system is too heavy for a quick email-oriented reproduction sprint, but the released repository includes a fixed memory file that can be inspected safely.
+JARVIS-1 is relevant to this project because it connects high-level planning with multimodal observations, embodied control, and memory. The official system is too heavy for a quick bounded reproduction pass, but the released repository includes a fixed memory file that can be inspected safely.
 
 This demo focuses on the memory idea:
 

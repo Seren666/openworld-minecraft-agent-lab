@@ -104,4 +104,4 @@ JARVIS-1 is central to this research direction because it moves beyond text-only
 
 ## Reproduction Angle
 
-For email outreach, the strongest honest artifact is a feasibility report plus a small fixed-memory analysis and original memory-augmented planning demo. Official execution should be deferred until simulator setup, dependencies, controller weights, CUDA compatibility, and rendering are stable.
+For this research preparation repository, the strongest honest artifact is a feasibility report plus a small fixed-memory analysis and original memory-augmented planning demo. Official execution should be deferred until simulator setup, dependencies, controller weights, CUDA compatibility, and rendering are stable.

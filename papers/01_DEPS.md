@@ -61,14 +61,14 @@ An LLM can propose plausible steps, but Minecraft execution requires more than p
 
 - AutoDL could not directly clone MC-Planner from GitHub during this pass.
 - The official `main.py` demo was not run because it requires API keys, a controller checkpoint, modified simulator setup, and Minecraft rendering.
-- Full dependency installation was deferred to avoid turning a short email-prep task into a long environment reproduction.
+- Full dependency installation was deferred to avoid turning a bounded planning pass into a long environment reproduction.
 
 ## What I Learned
 
 - DEPS is best understood as an LLM planner connected to a grounded skill/controller layer, not as a standalone text planner.
 - The Describe and Explain stages are useful for exposing hidden dependencies before execution.
 - The Select stage is important because a full plan may include steps that are not executable yet.
-- For a research email, a transparent planning-only reproduction is more credible than overclaiming a full simulator reproduction.
+- For a research preparation record, a transparent planning-only reproduction is more credible than overclaiming a full simulator reproduction.
 
 ## Connection To JARVIS-1 And Later CraftJarvis Work
 

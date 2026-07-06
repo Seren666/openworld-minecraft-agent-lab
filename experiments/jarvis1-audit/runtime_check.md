@@ -96,4 +96,4 @@ The repeated `--help` blockers happen before a useful argparse/help screen. This
 
 ## Feasibility Conclusion
 
-Official JARVIS-1 evaluation is not worth pursuing before the first research email. The useful bounded result is the repository audit plus fixed-memory analysis and a local memory-augmented planning demo. A future official run should first solve the Blackwell-compatible PyTorch stack, FFmpeg/`av`, Java/MCP build, rendering, and checkpoint path issues.
+Official JARVIS-1 evaluation is not worth pursuing before the dependency stack is stable. The useful bounded result is the repository audit plus fixed-memory analysis and a local memory-augmented planning demo. A future official run should first solve the Blackwell-compatible PyTorch stack, FFmpeg/`av`, Java/MCP build, rendering, and checkpoint path issues.

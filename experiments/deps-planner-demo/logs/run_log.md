@@ -6,7 +6,7 @@ This is a summarized run log for a lightweight DEPS-style reproduction. It is no
 
 ### Goal
 
-Inspect the official or most relevant DEPS / MC-Planner implementation, attempt bounded setup, and create a planning-only demonstration suitable for a research email.
+Inspect the official or most relevant DEPS / MC-Planner implementation, attempt bounded setup, and create a planning-only demonstration suitable for the research preparation record.
 
 ### Upstream Repository
 
@@ -69,7 +69,7 @@ The examples are in `task_examples.md`.
 ### What Failed Or Was Deferred
 
 - True `git clone` on AutoDL failed for MC-Planner.
-- Full dependency installation was deferred because it would pull simulator/controller/model components beyond this short email-prep pass.
+- Full dependency installation was deferred because it would pull simulator/controller/model components beyond this bounded planning pass.
 - No Minecraft environment was launched.
 - No controller checkpoint was loaded.
 

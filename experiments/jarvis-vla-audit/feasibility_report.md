@@ -4,7 +4,7 @@
 
 JARVIS-VLA is highly relevant to this repository because it explicitly bridges VLMs and game actions. It is also too heavy for a quick bounded official run: the released path depends on MineStudio, vLLM serving, a Qwen2-VL-7B-scale model, dataset/model assets, and Minecraft rollout.
 
-The best pre-email artifact is an audit plus a lightweight action-interface demo.
+The best bounded artifact is an audit plus a lightweight action-interface demo.
 
 ## Can We Run A Minimal Official Demo Quickly?
 
@@ -52,7 +52,7 @@ small CUDA tensor workload succeeded in prior GPU sanity test
 
 This suggests the GPU can support future VLA experiments if the rest of the stack is installed with a compatible modern PyTorch setup. It does not prove official JARVIS-VLA inference works.
 
-## What Can Be Reproduced Before Email Outreach?
+## What Can Be Reproduced In A Bounded Pass?
 
 Safe and useful:
 

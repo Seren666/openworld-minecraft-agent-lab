@@ -4,7 +4,7 @@ This folder records a bounded ROCKET-1 repository and feasibility audit. It is n
 
 ## Goal
 
-Understand ROCKET-1's visual-temporal context prompting idea and identify what can realistically be demonstrated before research email outreach.
+Understand ROCKET-1's visual-temporal context prompting idea and identify what can realistically be demonstrated in a bounded feasibility pass.
 
 ## Upstream Sources
 

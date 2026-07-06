@@ -33,7 +33,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 - JARVIS-VLA and ROCKET-1 official inference should wait until model weights, storage, rendering, and output paths are intentionally controlled.
 - OpenHA/CrossAgent official work should wait until action-space scope, model assets, datasets, and training/evaluation budget are defined.
 
-## Safe To Mention In Email
+## Evidence-Supported Scope
 
 - I audited official or relevant repositories.
 - I built lightweight demos for planning, memory, visual grounding, and action prediction.
@@ -62,7 +62,7 @@ Run one compact comparison across five interfaces on the same task set:
 - JARVIS-VLA-style action prediction
 - OpenHA/CrossAgent-style action-space selection
 
-This is low-cost, email-relevant, and does not require simulator rendering or large assets.
+This is low-cost, research-relevant, and does not require simulator rendering or large assets.
 
 ## Evidence Rules
 

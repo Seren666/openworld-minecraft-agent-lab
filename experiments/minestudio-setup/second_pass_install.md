@@ -70,7 +70,7 @@ timeout 120s conda run -n minestudio-test python -m pip install --no-deps -e .
 
 The second pass confirms the earlier smoke-test result: the source package itself can be installed and imported, but the usable simulator stack remains blocked by dependency installation. The immediate blocker is not a Minecraft task or model asset; it is environment stabilization.
 
-Given the disk-space pressure, Blackwell/PyTorch compatibility issue, missing OpenCV, and simulator/rendering dependencies, MineStudio should be deferred until after the first email. It remains a good future engineering base for benchmark evaluation and failure case analysis, but it is not the fastest path to additional evidence today.
+Given the disk-space pressure, Blackwell/PyTorch compatibility issue, missing OpenCV, and simulator/rendering dependencies, MineStudio should be deferred until the dependency strategy is stable. It remains a good future engineering base for benchmark evaluation and failure case analysis, but it is not the fastest path to additional evidence today.
 
 ## Next Step
 

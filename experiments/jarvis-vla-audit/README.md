@@ -4,7 +4,7 @@ This folder records a bounded JARVIS-VLA paper and repository audit. It is not a
 
 ## Goal
 
-Understand how JARVIS-VLA adapts vision-language models toward action prediction in Minecraft-like visual games, then identify a small safe artifact for research email outreach.
+Understand how JARVIS-VLA adapts vision-language models toward action prediction in Minecraft-like visual games, then identify a small safe artifact for the research preparation record.
 
 ## Upstream Sources
 

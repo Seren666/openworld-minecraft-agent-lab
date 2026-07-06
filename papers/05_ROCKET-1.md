@@ -65,7 +65,7 @@ The official README notes that ROCKET-1 was accepted by CVPR 2025 and that a Min
 - Candidate demo and evaluation scripts, including `rocket/arm/eval_rocket.py`.
 - Minecraft simulator requirement through MCP-Reborn.
 - Model and checkpoint requirements from Hugging Face.
-- Whether a minimal official demo looked safe to run before email outreach.
+- Whether a minimal official demo looked safe to run as a bounded feasibility check.
 
 ## What Worked
 
@@ -75,7 +75,7 @@ The official README notes that ROCKET-1 was accepted by CVPR 2025 and that a Min
 - A separate Blackwell-compatible PyTorch test succeeded with `torch 2.11.0+cu128`, which supports `sm_120`.
 - A lightweight original visual prompt demo was created under `experiments/rocket1-visual-prompt-demo/`.
 
-## What Can Be Realistically Reproduced Before Email Outreach
+## What Can Be Realistically Reproduced In A Bounded Pass
 
 Short term:
 
