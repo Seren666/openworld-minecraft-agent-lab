@@ -3,7 +3,7 @@
 | Experiment | Status | Output | Notes |
 | --- | --- | --- | --- |
 | DEPS / MC-Planner | Bounded planning pass complete | Upstream inspection, Conda env creation, planning-only task examples | Official demo blocked by OpenAI keys, controller checkpoint, modified MineDojo / MC-Simulator, and Minecraft rendering setup. |
-| MineStudio setup | Planned | Install notes and run summaries | Track local and AutoDL differences. |
+| MineStudio setup | Smoke test blocked by dependency install timeout | Official repo cloned, `minestudio-test` env created, Python/OpenJDK verified, no-deps package import verified | Full `pip install minestudio` timed out after 900 seconds; PyTorch/OpenCV/simulator checks remain unresolved. |
 | Minecraft task analysis | In progress | Taxonomy and failure notes | Use as shared vocabulary for demos. |
 | Mini VLA gridworld | Planned | Small sandbox results | Keep compute requirements low. |
 

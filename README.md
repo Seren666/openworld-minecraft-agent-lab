@@ -23,7 +23,7 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 | Paper / Project | Status | What I did | Evidence | Next step |
 | --- | --- | --- | --- | --- |
 | DEPS / MC-Planner | Bounded planning pass complete | Inspected MC-Planner, created `mc-planner-test`, documented official blockers, and wrote a lightweight DEPS-style planning demo. | `experiments/deps-planner-demo/logs/run_log.md`, `experiments/deps-planner-demo/task_examples.md`, `papers/01_DEPS.md` | Prepare keys, MC-Simulator, MineCLIP, controller checkpoint, and one short official simulator run if needed. |
-| MineStudio setup | Planned | Record environment setup, dependency notes, and run logs. | `experiments/minestudio-setup/` | Run a bounded AutoDL smoke test. |
+| MineStudio setup | Smoke test blocked by dependency install timeout | Cloned MineStudio, created `minestudio-test`, verified Python/OpenJDK, and confirmed no-deps package import; full dependency install timed out. | `experiments/minestudio-setup/install_notes.md`, `experiments/minestudio-setup/run_logs.md` | Stabilize dependency install, then test PyTorch, OpenCV, `MinecraftSim`, and rendering. |
 | Minecraft task dependency analysis | In progress | Organize tasks, dependencies, failure cases, and gameplay notes. | `experiments/minecraft-task-analysis/` | Expand dependency graph examples. |
 | Mini VLA gridworld | Planned | Create a lightweight VLA-style sandbox before Minecraft-scale experiments. | `experiments/mini-vla-gridworld/` | Define minimal action and observation space. |
 | Benchmark evaluation | Planned | Compare tasks, metrics, and failure modes across systems. | `docs/reproduction_summary.md` | Add evaluation criteria after MineStudio setup. |
