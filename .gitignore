@@ -1,0 +1,49 @@
+# Python cache and bytecode
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Virtual environments and local secrets
+.venv/
+venv/
+.env
+
+# Data, datasets, checkpoints, and model artifacts
+data/
+datasets/
+checkpoints/
+ckpts/
+models/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# Generated experiment outputs and tracking services
+outputs/
+runs/
+wandb/
+logs/*.log
+**/logs/*.log
+
+# AutoDL and temporary runtime outputs
+autodl-tmp/
+AutoDL-Tmp/
+tmp/
+temp/
+.cache/
+cache/
+
+# Archives and large media files
+*.zip
+*.tar
+*.tar.gz
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# OS files
+.DS_Store
+Thumbs.db
