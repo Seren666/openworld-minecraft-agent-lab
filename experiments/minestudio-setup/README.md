@@ -36,6 +36,7 @@ External source code stays under `/root/autodl-tmp/external_repos` and is not co
 | Python version | Python 3.10.20 |
 | Java requirement | OpenJDK 8 installed in the environment |
 | Full `pip install minestudio` | Timed out after 15 minutes |
+| Second-pass dependency dry-run | Timed out after 5 minutes |
 | No-deps editable install from source | Passed |
 | Top-level `import minestudio` | Passed after no-deps editable install |
 | PyTorch GPU check | Not available because full dependency installation timed out before `torch` was installed |
@@ -53,8 +54,10 @@ External source code stays under `/root/autodl-tmp/external_repos` and is not co
 ## What Failed Or Remains Unresolved
 
 - Full dependency installation did not complete within the 15-minute bound.
+- A second-pass dependency dry-run also timed out within the 5-minute bound.
 - `torch` was not installed, so CUDA availability through PyTorch could not be tested in this environment.
 - `MinecraftSim` import failed because `cv2` and other dependencies were not installed.
+- `java` was present as a conda `openjdk` package but was not visible from the non-activated shell PATH during the second pass.
 - The simulator also requires rendering setup such as Xvfb or VirtualGL.
 - No datasets, checkpoints, or simulator assets were downloaded.
 
@@ -72,5 +75,6 @@ For the next pass, the priority should be dependency installation strategy rathe
 ## Files
 
 - `install_notes.md`: exact setup commands and dependency notes
+- `second_pass_install.md`: bounded second-pass dependency attempt
 - `run_logs.md`: summarized smoke-test results
 - `screenshots/`: small setup screenshots if needed later

@@ -83,3 +83,40 @@ Run a dependency-focused pass with a longer but still bounded install window, th
 3. `import minestudio`
 4. `from minestudio.simulator import MinecraftSim`
 5. `timeout 60s python -m minestudio.simulator.entry`
+
+## 2026-07-06 Second-Pass Install Check
+
+### Goal
+
+Run one bounded second pass without downloading datasets, checkpoints, raw videos, or starting training jobs.
+
+### Raw Log Location
+
+Raw logs were kept outside the repository:
+
+```text
+/root/autodl-tmp/logs/minestudio_second_pass_dry_run.log
+/root/autodl-tmp/logs/minestudio_second_pass_nodeps.log
+```
+
+These files were not committed.
+
+### Results
+
+| Check | Result |
+| --- | --- |
+| Repository branch / commit | `master` / `278aa8553668d591339dbf30d281594ed06ee882` |
+| Conda environment | `minestudio-test` |
+| Python version | `Python 3.10.20` |
+| `openjdk` package | Present in env, version `8.0.472` |
+| Shell `java -version` | Failed from non-activated PATH |
+| Dependency dry-run | Timed out after 300 seconds |
+| No-deps editable install | Passed |
+| Top-level `import minestudio` | Passed |
+| `import torch` | Failed: `ModuleNotFoundError: No module named 'torch'` |
+| `import cv2` | Failed: `ModuleNotFoundError: No module named 'cv2'` |
+| `import minestudio.simulator` | Failed because `cv2` is missing |
+
+### Interpretation
+
+MineStudio remains useful for future benchmark evaluation, but it should be deferred until after the first research email. The current blockers are dependency resolution, disk space, PyTorch/CUDA compatibility, OpenCV, Java PATH activation, and rendering setup.

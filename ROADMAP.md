@@ -9,6 +9,7 @@
 ## Phase 2: Lightweight Reproduction
 
 - Implement a DEPS-style planner demo with prompt examples and small task graphs.
+- Add a JARVIS-1-style memory-augmented planning demo using toy memory and aggregate-only official memory analysis.
 - Set up MineStudio and document installation issues on local and AutoDL environments.
 - Build a Minecraft task taxonomy and dependency graph for common survival tasks.
 
@@ -17,6 +18,7 @@
 - Keep small Markdown run logs under `experiments/`.
 - Store small screenshots that explain setup or qualitative behavior.
 - Keep large datasets, checkpoints, videos, and generated outputs outside Git.
+- Track infrastructure blockers separately from research results, especially CUDA/PyTorch compatibility and simulator setup.
 
 ## Phase 4: Mini VLA Sandbox
 
@@ -29,3 +31,10 @@
 - Prepare diagrams, paper summaries, and reproduction findings for GitHub.
 - Convert research notes into a clear project narrative.
 - Draft email and outreach materials for advisors or collaborators.
+- Emphasize lightweight evidence honestly: planning traces, memory analysis, environment audit, and known blockers.
+
+## Immediate Next Steps
+
+- Compare DEPS-style dependency planning with JARVIS-1-style memory retrieval on shared Minecraft tasks.
+- Stabilize a Blackwell-compatible PyTorch environment before attempting GPU-backed Minecraft agent code.
+- Defer full MineStudio and JARVIS-1 simulator runs until dependency, Java, rendering, and checkpoint requirements are controlled.

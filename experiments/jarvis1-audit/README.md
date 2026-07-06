@@ -36,9 +36,16 @@ External code, large assets, checkpoints, datasets, raw logs, and videos stay ou
 - `PYTHONPATH` package import check
 - `offline_evaluation.py --help` check with a short timeout
 - Fixed-memory JSON summary
+- Separate `jarvis1-runtime-test` environment check with PyTorch, OpenCV, and small dependency retries
 
 ## Main Result
 
-A minimal demo is not immediately ready on the current machine. The repository is inspectable, but useful execution requires dependency installation, OpenCV, PyTorch, MCP/Minecraft setup, STEVE-1 weights, and likely rendering configuration.
+A minimal official demo is not immediately ready on the current machine. The repository is inspectable, but useful execution requires dependency installation, Blackwell-compatible PyTorch, MCP/Minecraft setup, STEVE-1 weights, and likely rendering configuration.
 
 The smallest meaningful email/GitHub artifact is a transparent feasibility report plus a fixed-memory planning inspection, not an end-to-end Minecraft run.
+
+## Files
+
+- `setup_notes.md`: repository and dependency setup notes
+- `feasibility_report.md`: bounded official reproduction feasibility analysis
+- `runtime_check.md`: AutoDL runtime, PyTorch/CUDA, import, and help-command checks

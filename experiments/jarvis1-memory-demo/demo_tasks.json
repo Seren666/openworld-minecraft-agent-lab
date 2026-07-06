@@ -1,0 +1,35 @@
+[
+  {
+    "task": "obtain iron ingot",
+    "current_state": {
+      "inventory": ["oak_log", "crafting_table", "wooden_pickaxe"],
+      "nearby": ["stone", "coal_ore", "iron_ore"],
+      "time": "day"
+    }
+  },
+  {
+    "task": "craft stone sword",
+    "current_state": {
+      "inventory": ["crafting_table", "stick"],
+      "nearby": ["stone"],
+      "time": "day"
+    }
+  },
+  {
+    "task": "build a small shelter",
+    "current_state": {
+      "inventory": ["oak_log", "dirt", "torch"],
+      "nearby": ["trees", "flat_ground"],
+      "time": "late_day",
+      "risk": "hostile mobs likely soon"
+    }
+  },
+  {
+    "task": "obtain diamond with insufficient tools",
+    "current_state": {
+      "inventory": ["stone_pickaxe", "torch"],
+      "nearby": ["diamond_ore", "stone"],
+      "time": "underground"
+    }
+  }
+]

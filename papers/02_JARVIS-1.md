@@ -47,6 +47,8 @@ In this repository, DEPS is useful as the first planning baseline, while JARVIS-
   - top-level package import with `PYTHONPATH`
   - `offline_evaluation.py --help` as a safe non-execution check
   - fixed-memory JSON summary
+- Created a separate `jarvis1-runtime-test` environment for bounded runtime checks.
+- Built an original toy memory-augmented planning demo to illustrate the memory idea without using official model weights or raw memory entries.
 
 ## What Worked
 
@@ -54,6 +56,8 @@ In this repository, DEPS is useful as the first planning baseline, while JARVIS-
 - `py_compile` passed for `offline_evaluation.py` and `prepare_mcp.py`.
 - `import jarvis` and `import jarvis.assembly` worked with `PYTHONPATH` before installing the package.
 - The released fixed-memory file was readable and contained 188 memory entries.
+- Aggregate fixed-memory analysis showed 188 entries, 1399 plan steps, and mostly `craft`, `mine`, and `smelt` step types.
+- The toy memory planner generated structured traces for iron ingot, stone sword, shelter, and diamond-with-insufficient-tools tasks.
 
 ## What Can Be Realistically Reproduced
 
@@ -64,6 +68,7 @@ Short term:
 - Task/memory plan extraction
 - Dependency and environment preparation notes
 - Possibly a package install/import smoke test after installing OpenCV, PyTorch, and Java/MCP dependencies
+- A local memory-augmented planning demonstration that compares plans with and without retrieved memory
 
 Medium term:
 
@@ -77,14 +82,21 @@ Medium term:
 
 ## What Remains Blocked
 
-- Base AutoDL Python does not have PyTorch installed.
-- `offline_evaluation.py --help` fails before argparse because importing `jarvis.assembly.marks` requires `cv2`.
-- Full package install was not attempted in this bounded audit.
+- Official-style `torch==2.2.1+cu121` detects the Blackwell GPU but cannot execute tensor kernels because the wheel supports architectures up to `sm_90`, while the GPU is `sm_120`.
+- A newer CUDA 12.8 PyTorch install attempt failed because the root filesystem ran out of space.
+- `offline_evaluation.py --help` still fails before a useful help screen after small dependency installs; the observed dependency chain reached `coloredlogs`, `psutil`, `daemoniker`, and then `lxml`.
+- Installing `av==11.0.0` failed because FFmpeg development libraries were missing.
 - `prepare_mcp.py` likely requires a stable network and Gradle/Minecraft asset downloads.
 - STEVE-1 weights are required and were not downloaded.
 - The README requires `OPENAI_API_KEY` for agent usage.
 - The released repository notes that online evaluation, multimodal descriptor, and multimodal retrieval are not released yet.
 - `open_jarvis.py` mentioned in README was not present in the cloned release.
+
+## Memory As A Research Entry Point
+
+The fixed-memory file is a good bounded entry point because it exposes the high-level planning structure without requiring Minecraft rendering or large checkpoints. The observed memory entries are task-level rather than raw action traces, and they mainly encode reusable crafting, mining, and smelting sequences.
+
+This connects directly to the research question: how should an embodied Minecraft agent retrieve and trust prior experience when planning a long-horizon task? The lightweight demo in `experiments/jarvis1-memory-demo/` uses toy memory to show both the benefit and the risk: memory can add missing prerequisites, but irrelevant or stale memory can push the plan toward wrong subgoals.
 
 ## Why This Paper Is Central
 
@@ -92,4 +104,4 @@ JARVIS-1 is central to this research direction because it moves beyond text-only
 
 ## Reproduction Angle
 
-For email outreach, the strongest honest artifact is a feasibility report plus a small fixed-memory analysis. A full reproduction should be deferred until simulator setup, dependencies, controller weights, and rendering are stable.
+For email outreach, the strongest honest artifact is a feasibility report plus a small fixed-memory analysis and original memory-augmented planning demo. A full reproduction should be deferred until simulator setup, dependencies, controller weights, CUDA compatibility, and rendering are stable.

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "tool_level_iron",
+    "task_cues": ["iron", "ore", "pickaxe", "tool"],
+    "memory": "Mining iron ore with a wooden pickaxe failed because the tool level was insufficient.",
+    "implication": "Craft a stone pickaxe before mining iron ore.",
+    "risk_if_misused": "The planner may over-focus on mining even when iron ore is not visible."
+  },
+  {
+    "id": "stone_pickaxe_before_iron",
+    "task_cues": ["stone", "pickaxe", "iron"],
+    "memory": "A stone pickaxe is a practical prerequisite for collecting iron ore.",
+    "implication": "Collect wood, craft a crafting table, make sticks, mine cobblestone, then craft a stone pickaxe.",
+    "risk_if_misused": "The planner may craft a redundant stone pickaxe if a better pickaxe is already available."
+  },
+  {
+    "id": "furnace_requires_cobblestone",
+    "task_cues": ["furnace", "cobblestone", "smelt", "iron", "ingot"],
+    "memory": "A furnace requires cobblestone before smelting can happen.",
+    "implication": "Mine enough cobblestone before planning any smelting step.",
+    "risk_if_misused": "The planner may mine cobblestone unnecessarily when a furnace is already in inventory."
+  },
+  {
+    "id": "smelting_needs_fuel",
+    "task_cues": ["smelt", "iron", "ingot", "fuel", "coal", "charcoal", "coal_ore"],
+    "memory": "Smelting iron ore requires fuel such as coal, charcoal, or spare wood.",
+    "implication": "Check for fuel before starting the furnace step.",
+    "risk_if_misused": "The planner may collect too much fuel for a task that does not need smelting."
+  },
+  {
+    "id": "shelter_before_night",
+    "task_cues": ["shelter", "night", "mobs", "build"],
+    "memory": "A small shelter should be built before night if hostile mobs are nearby.",
+    "implication": "Prioritize walls, roof, light, and a door before exploring further.",
+    "risk_if_misused": "The planner may pause resource gathering too early when the area is already safe."
+  },
+  {
+    "id": "diamond_requires_iron",
+    "task_cues": ["diamond", "ore", "iron", "pickaxe"],
+    "memory": "Diamond ore requires an iron pickaxe or better.",
+    "implication": "Do not mine diamond ore with wood or stone tools; obtain an iron pickaxe first.",
+    "risk_if_misused": "The planner may detour into iron acquisition even if the task only asks for scouting."
+  },
+  {
+    "id": "stone_sword_recipe",
+    "task_cues": ["stone", "sword", "cobblestone", "stick", "crafting table"],
+    "memory": "A stone sword requires cobblestone, sticks, and a crafting table.",
+    "implication": "Confirm wood, sticks, crafting table, and cobblestone before crafting the sword.",
+    "risk_if_misused": "The planner may retrieve weapon memories for unrelated stone-building tasks."
+  }
+]
