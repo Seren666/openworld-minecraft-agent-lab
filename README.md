@@ -28,6 +28,9 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 | MineStudio setup | Second-pass install still blocked | Cloned MineStudio, created `minestudio-test`, verified no-deps source import, and ran a bounded second-pass dependency check. | `experiments/minestudio-setup/install_notes.md`, `experiments/minestudio-setup/second_pass_install.md`, `experiments/minestudio-setup/run_logs.md` | Free disk space, install dependencies in smaller groups, then test PyTorch, OpenCV, `MinecraftSim`, and rendering. |
 | ROCKET-1 audit | Bounded repository audit complete | Cloned ROCKET-1, recorded upstream commit, inspected README, dependencies, SAM-2/MCP requirements, and feasible demo paths. | `experiments/rocket1-audit/feasibility_report.md`, `papers/05_ROCKET-1.md` | Defer official inference until SAM-2 checkpoints, model weights, simulator, and rendering are intentionally prepared. |
 | ROCKET-1 visual prompt demo | Lightweight demo complete | Built a synthetic grid demo comparing language-only instructions with mask/interaction prompts. | `experiments/rocket1-visual-prompt-demo/logs/example_run.md`, `experiments/rocket1-visual-prompt-demo/assets/` | Compare mask prompting with DEPS/JARVIS memory planning on shared Minecraft subgoals. |
+| JARVIS-VLA audit | Bounded repository audit complete | Cloned JARVIS-VLA to the AutoDL data disk, recorded upstream commit, inspected README, requirements, vLLM inference, dataset/model links, and evaluation scripts. | `experiments/jarvis-vla-audit/feasibility_report.md`, `papers/06_JARVIS-VLA.md` | Defer official inference until model weights, vLLM, MineStudio, rendering, and storage are deliberately prepared. |
+| JARVIS-VLA action demo | Lightweight demo complete | Built a toy action-interface demo mapping observation, instruction, and state to structured game actions. | `experiments/jarvis-vla-action-demo/logs/example_run.md` | Compare action-interface decisions against DEPS planning, JARVIS memory, and ROCKET visual prompts. |
+| JARVIS-VLA GPU action scorer | Toy GPU scorer complete | Ran a tiny deterministic PyTorch scorer on Blackwell using the data-disk CUDA 12.8 environment. | `experiments/jarvis-vla-action-demo/logs/gpu_action_scorer_log.md` | Use only as infrastructure evidence; do not claim official JARVIS-VLA inference. |
 | GPU sanity check | Modern PyTorch CUDA works; official pinned stacks still need care | Confirmed Blackwell GPUs are visible; old JARVIS pinned torch fails, but `torch 2.11.0+cu128` under `/root/autodl-tmp` executes a CUDA tensor workload. | `experiments/gpu-sanity/gpu_check_log.md`, `experiments/gpu-sanity/blackwell_torch_cu128.md` | Use a Blackwell-compatible PyTorch stack for future ROCKET-1/MineStudio attempts where compatible. |
 | Minecraft task dependency analysis | In progress | Organize tasks, dependencies, failure cases, and gameplay notes. | `experiments/minecraft-task-analysis/` | Expand dependency graph examples. |
 | Mini VLA gridworld | Planned | Create a lightweight VLA-style sandbox before Minecraft-scale experiments. | `experiments/mini-vla-gridworld/` | Define minimal action and observation space. |
@@ -38,6 +41,7 @@ Minecraft is a useful testbed for open-ended embodied AI: long-horizon planning,
 - DEPS planner demo
 - JARVIS-1 memory-augmented planning demo
 - ROCKET-1 visual prompt demo
+- JARVIS-VLA action-interface demo
 - MineStudio setup blockers
 - Minecraft task dependency analysis
 

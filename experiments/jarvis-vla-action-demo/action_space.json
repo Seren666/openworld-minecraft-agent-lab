@@ -1,0 +1,74 @@
+[
+  {
+    "name": "move_forward",
+    "type": "navigation",
+    "arguments": [],
+    "description": "Move toward the visible target."
+  },
+  {
+    "name": "turn_left",
+    "type": "camera",
+    "arguments": [],
+    "description": "Rotate view left to search or align with target."
+  },
+  {
+    "name": "turn_right",
+    "type": "camera",
+    "arguments": [],
+    "description": "Rotate view right to search or align with target."
+  },
+  {
+    "name": "look_up",
+    "type": "camera",
+    "arguments": [],
+    "description": "Raise view angle."
+  },
+  {
+    "name": "look_down",
+    "type": "camera",
+    "arguments": [],
+    "description": "Lower view angle."
+  },
+  {
+    "name": "attack",
+    "type": "interaction",
+    "arguments": ["target"],
+    "description": "Mine or attack the current target."
+  },
+  {
+    "name": "use",
+    "type": "interaction",
+    "arguments": ["target"],
+    "description": "Right-click or use an interactable object."
+  },
+  {
+    "name": "equip_item",
+    "type": "inventory",
+    "arguments": ["item"],
+    "description": "Switch held item."
+  },
+  {
+    "name": "craft_item",
+    "type": "inventory",
+    "arguments": ["item"],
+    "description": "Craft a requested item when ingredients and station are available."
+  },
+  {
+    "name": "place_block",
+    "type": "interaction",
+    "arguments": ["block"],
+    "description": "Place a block in the world."
+  },
+  {
+    "name": "wait",
+    "type": "control",
+    "arguments": [],
+    "description": "Pause because the safe action is not yet available."
+  },
+  {
+    "name": "retreat",
+    "type": "navigation",
+    "arguments": ["threat"],
+    "description": "Move away from a nearby threat."
+  }
+]

@@ -11,6 +11,7 @@
 - Implement a DEPS-style planner demo with prompt examples and small task graphs.
 - Add a JARVIS-1-style memory-augmented planning demo using toy memory and aggregate-only official memory analysis.
 - Add a ROCKET-1-style visual prompt demo using synthetic masks, interaction types, and temporal context.
+- Add a JARVIS-VLA-style action-interface demo using toy observations, action schemas, and a tiny GPU scorer.
 - Set up MineStudio and document installation issues on local and AutoDL environments.
 - Build a Minecraft task taxonomy and dependency graph for common survival tasks.
 
@@ -39,4 +40,5 @@
 - Compare DEPS-style dependency planning with JARVIS-1-style memory retrieval on shared Minecraft tasks.
 - Use the working Blackwell-compatible PyTorch CUDA 12.8 environment as the starting point for future GPU-backed Minecraft agent code.
 - Extend the ROCKET-1 visual prompt demo into a small comparison with DEPS/JARVIS-style subgoal planning.
+- Compare high-level planning, memory retrieval, visual prompting, and action prediction on the same Minecraft task set.
 - Defer full MineStudio and JARVIS-1 simulator runs until dependency, Java, rendering, and checkpoint requirements are controlled.

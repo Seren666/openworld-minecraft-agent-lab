@@ -1,0 +1,57 @@
+[
+  {
+    "id": "tree_collect_wood",
+    "observation": "A tree trunk is centered in front of the player.",
+    "instruction": "Collect wood.",
+    "state": {
+      "inventory": ["empty_hand"],
+      "visible_objects": ["tree_trunk"],
+      "time": "day",
+      "distance_to_target": "near"
+    }
+  },
+  {
+    "id": "craft_table_planks",
+    "observation": "A crafting table is visible and the player has logs.",
+    "instruction": "Craft planks or sticks.",
+    "state": {
+      "inventory": ["oak_log"],
+      "visible_objects": ["crafting_table"],
+      "time": "day",
+      "distance_to_target": "near"
+    }
+  },
+  {
+    "id": "furnace_smelt_iron",
+    "observation": "A furnace is visible in front of the player.",
+    "instruction": "Smelt iron ore.",
+    "state": {
+      "inventory": ["iron_ore", "coal"],
+      "visible_objects": ["furnace"],
+      "time": "day",
+      "distance_to_target": "near"
+    }
+  },
+  {
+    "id": "iron_wooden_pickaxe",
+    "observation": "Iron ore is visible in a cave wall.",
+    "instruction": "Obtain iron ore.",
+    "state": {
+      "inventory": ["wooden_pickaxe"],
+      "visible_objects": ["iron_ore"],
+      "time": "underground",
+      "distance_to_target": "near"
+    }
+  },
+  {
+    "id": "night_mob_survive",
+    "observation": "A hostile mob is nearby at night.",
+    "instruction": "Survive.",
+    "state": {
+      "inventory": ["dirt", "wooden_sword"],
+      "visible_objects": ["zombie", "open_ground"],
+      "time": "night",
+      "distance_to_target": "near"
+    }
+  }
+]
