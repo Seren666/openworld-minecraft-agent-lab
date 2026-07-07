@@ -129,7 +129,7 @@ The repository now includes a lightweight OpenHA/CrossAgent action-space taxonom
 - `docs/action_space_taxonomy_analysis.md`
 - `experiments/openha-action-space-analysis/`
 
-The analysis uses public local metadata-derived task names plus bounded representative additions. It classifies 1200 task rows by category, interface pressure, required information type, and likely fixed-action-space failure. The key preliminary result is that dynamic action-space switching is assigned to 463 tasks (38.6%), while memory/prerequisite reasoning and visual grounding appear in 851 tasks (70.9%) and 737 tasks (61.4%), respectively.
+The analysis uses public local metadata/config-derived task-name records plus bounded representative additions. It should not be read as the official OpenHA/CrossAgent benchmark size; the paper framing describes an over-800-task benchmark. The detailed exploratory statistics classify local records by category, interface pressure, required information type, and likely fixed-action-space failure, while the main takeaway is qualitative: dynamic action-space switching appears relevant for a meaningful subset of records rather than every task.
 
 ## Next Study Targets
 

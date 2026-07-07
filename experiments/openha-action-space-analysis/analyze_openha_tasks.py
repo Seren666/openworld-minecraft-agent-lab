@@ -589,14 +589,20 @@ def write_metadata_report(
     rows: list[dict[str, object]],
 ) -> None:
     source_kind = metadata.get("source_kind")
-    full_or_sample = (
-        "full local metadata-derived task names plus bounded representative additions"
-        if metadata.get("task_suc_rate_task_count", 0)
-        else "bounded representative sample"
-    )
+    source_counts = Counter(str(row["source"]) for row in rows)
+    unique_task_names = len({str(row["task_name"]) for row in rows})
+    task_list_rows = sum(1 for row in rows if TASK_LIST_REL in str(row["source"]))
+    suc_rate_rows = sum(1 for row in rows if TASK_SUC_RATE_REL in str(row["source"]))
+    rollout_rows = sum(1 for row in rows if "rollout_debug directory names" in str(row["source"]))
+    manual_rows = source_counts.get("manual_representative_sample", 0)
+    task_list_only = source_counts.get(TASK_LIST_REL, 0)
+    suc_rate_only = source_counts.get(TASK_SUC_RATE_REL, 0)
+    rollout_only = source_counts.get("rollout_debug directory names", 0)
     text = f"""# Metadata Source Report
 
 This report documents the source used for the OpenHA/CrossAgent action-space taxonomy analysis.
+
+This is not the official OpenHA benchmark size. The OpenHA/CrossAgent papers describe the benchmark scope as over 800 distinct Minecraft tasks. This local artifact contains task-name records parsed from public metadata/config files plus bounded representative additions.
 
 ## Source Location
 
@@ -607,7 +613,7 @@ This report documents the source used for the OpenHA/CrossAgent action-space tax
 | Commit hash | `606efc69e945bd02c700e584136bcc105d22f122` |
 | Local source kind | `{source_kind}` |
 | Local source storage | external repository or snapshot inspected outside this project repository |
-| Analysis scope | {full_or_sample} |
+| Analysis scope | exploratory metadata/config-derived task-name records plus bounded representative additions |
 
 ## Directory Structure Summary
 
@@ -617,23 +623,43 @@ This report documents the source used for the OpenHA/CrossAgent action-space tax
 - Minecraft-related task family files observed: `{", ".join(metadata.get("task_family_files", []))}`.
 - `openagents/assets/recipes/` is present in the snapshot, but raw recipe files are not copied into this repository.
 
-## Task Metadata Found
+## Source Breakdown
 
-| Source | Count |
+| Source path | Source type | Raw unique names found | Final rows mentioning source | Exclusive new rows after exact-name de-duplication | Entry interpretation |
+| --- | --- | ---: | ---: | ---: | --- |
+| `CrossAgent/STRL/data_processor/task_suc_rate.json` | CrossAgent metadata/config summary | {metadata.get("task_suc_rate_task_count", 0)} | {suc_rate_rows} | {suc_rate_only} | task-name records / atomic or config-level task variants, not the official benchmark-size denominator |
+| `CrossAgent/STRL/data_processor/utils/task_list.json` | CrossAgent task-list/config file | {metadata.get("task_list_count", 0)} | {task_list_rows} | {task_list_only} | task-list entries that overlap with `task_suc_rate.json` in this snapshot |
+| rollout-debug directory names | generated/debug directory labels | {metadata.get("rollout_debug_task_count", 0)} | {rollout_rows} | {rollout_only} | directory-derived task labels that overlap with config metadata; not new benchmark tasks |
+| `manual_representative_sample` | manually added analysis sample | {len(MANUAL_REPRESENTATIVE_TASKS)} | {manual_rows} | {manual_rows} | bounded Minecraft examples added only to cover readable task types such as shelter, cave exploration, and furnace use |
+
+## Final Row-Source Combinations
+
+| Final `source` value in `task_taxonomy.csv` | Row count |
 | --- | ---: |
-| `CrossAgent/STRL/data_processor/utils/task_list.json` tasks | {metadata.get("task_list_count", 0)} |
-| unique task names from `CrossAgent/STRL/data_processor/task_suc_rate.json` | {metadata.get("task_suc_rate_task_count", 0)} |
-| task names inferred from rollout debug directory names | {metadata.get("rollout_debug_task_count", 0)} |
-| task rows analyzed after de-duplication and representative additions | {len(rows)} |
+| `{TASK_SUC_RATE_REL}` | {source_counts.get(TASK_SUC_RATE_REL, 0)} |
+| `{TASK_LIST_REL}; {TASK_SUC_RATE_REL}` | {source_counts.get(f"{TASK_LIST_REL}; {TASK_SUC_RATE_REL}", 0)} |
+| `{TASK_LIST_REL}; {TASK_SUC_RATE_REL}; rollout_debug directory names` | {source_counts.get(f"{TASK_LIST_REL}; {TASK_SUC_RATE_REL}; rollout_debug directory names", 0)} |
+| `manual_representative_sample` | {manual_rows} |
+
+## Final CSV Accounting
+
+| Statistic | Count |
+| --- | ---: |
+| Rows in `task_taxonomy.csv` | {len(rows)} |
+| Unique task names in `task_taxonomy.csv` | {unique_task_names} |
+| Duplicate exact task names in final CSV | {len(rows) - unique_task_names} |
+
+The final CSV de-duplicates exact task names. Upstream sources overlap conceptually and by exact name, so source counts should not be added together as an official benchmark count.
 
 ## Metadata Type
 
-The strongest local source is structured JSON task metadata from the public OpenHA/CrossAgent repository snapshot. The taxonomy uses task names and public summary metadata only. It does not copy raw external repository code, raw rollout logs, model weights, datasets, checkpoints, or videos into this project repository.
+The strongest local source is structured JSON task metadata from the public OpenHA/CrossAgent repository snapshot. The taxonomy uses task names and public summary/config metadata only. It does not copy raw external repository code, raw rollout logs, model weights, datasets, checkpoints, or videos into this project repository.
 
 ## Limitations
 
 - Task names do not fully reveal trajectory difficulty, visual state, inventory state, or world layout.
-- `task_suc_rate.json` appears to be public aggregate task-level metadata, not an official evaluation run performed in this repository.
+- `task_suc_rate.json` appears to be public aggregate task-level metadata/config output, not an official evaluation run performed in this repository.
+- The 1200 local records are not the official OpenHA/CrossAgent benchmark size.
 - The taxonomy is rule-based and preliminary.
 - Representative tasks are added only to cover shelter, cave exploration, furnace use, and other task types not visible in the structured task-name list.
 """
@@ -761,44 +787,63 @@ def write_key_findings(
     interface_rows: list[dict[str, object]],
 ) -> None:
     total = len(rows)
+    unique_task_names = len({str(row["task_name"]) for row in rows})
     cat = {r["category"]: r for r in category_rows}
     iface = {r["preferred_interface"]: r for r in interface_rows}
+    manual_rows = sum(1 for row in rows if row["source"] == "manual_representative_sample")
     lines = [
         "# Key Findings",
         "",
-        "This is a preliminary rule-based taxonomy over OpenHA/CrossAgent public task metadata and a bounded representative sample. It is not official model evaluation.",
+        "This is a preliminary, exploratory taxonomy over OpenHA/CrossAgent public metadata/config-derived task-name records plus a bounded representative sample. It is not official model evaluation.",
+        "",
+        "The OpenHA/CrossAgent paper framing describes an over-800-task benchmark. The 1200 records here are local unique task-name records parsed from public metadata/config outputs plus bounded additions, not the official benchmark size.",
         "",
         "## Strongest Findings",
         "",
-        f"1. **{total} tasks were analyzed.** The task set is dominated by metadata-derived Minecraft tasks from public OpenHA/CrossAgent files, with a small representative supplement for missing task types.",
+        f"1. **The local artifact contains {total} task-name rows and {unique_task_names} unique task names.** This should be read as an exploratory metadata/config scope, not as the official OpenHA benchmark denominator.",
+        f"2. **Most records come from CrossAgent metadata/config outputs.** The final CSV includes {manual_rows} bounded representative samples; the remaining records are parsed from public OpenHA/CrossAgent files.",
+        "3. **The taxonomy suggests that Minecraft task families place different pressure on action granularity.** Crafting and smelting lean toward prerequisite/inventory reasoning, while mining, combat, building, and navigation lean more toward visual grounding or low-level control.",
+        "4. **Dynamic action-space switching appears as a meaningful subset rather than a universal requirement.** This supports asking when to switch action interfaces, not only which next action to predict.",
+        "",
+        "## Detailed Exploratory Statistics",
+        "",
     ]
     for label in ["crafting", "mining", "tool_use_or_interaction", "combat", "smelting_or_cooking", "long_horizon_obtain"]:
         if label in cat:
             r = cat[label]
             lines.append(
-                f"2. **{label} accounts for {r['task_count']} tasks ({r['percentage_of_tasks']}%).** This category needs different interface support than a single fixed action space."
+                f"- `{label}` accounts for {r['task_count']} local records ({r['percentage_of_tasks']}% of rows)."
             )
             break
     for label in ["dynamic_action_space_switching", "memory_or_prerequisite_reasoning", "visual_grounding_or_mask_action", "low_level_control"]:
         if label in iface:
             r = iface[label]
             lines.append(
-                f"3. **{label} is assigned to {r['task_count']} tasks ({r['percentage_of_tasks']}%).** This supports treating action-space choice as task- and stage-dependent."
+                f"- `{label}` is assigned to {r['task_count']} local records ({r['percentage_of_tasks']}% of rows)."
             )
             break
     if "memory_or_prerequisite_reasoning" in iface:
         r = iface["memory_or_prerequisite_reasoning"]
         lines.append(
-            f"4. **Memory/prerequisite reasoning appears in {r['task_count']} tasks ({r['percentage_of_tasks']}%).** Crafting, smelting, mining with tool constraints, and long-horizon obtain tasks are especially sensitive to missing prerequisites."
+            f"- `memory_or_prerequisite_reasoning` appears in {r['task_count']} local records ({r['percentage_of_tasks']}% of rows)."
         )
     if "visual_grounding_or_mask_action" in iface:
         r = iface["visual_grounding_or_mask_action"]
         lines.append(
-            f"5. **Visual grounding appears in {r['task_count']} tasks ({r['percentage_of_tasks']}%).** Mining, combat, furnace use, navigation, and building tasks require target localization beyond text-only planning."
+            f"- `visual_grounding_or_mask_action` appears in {r['task_count']} local records ({r['percentage_of_tasks']}% of rows)."
         )
 
     lines.extend(
         [
+            "",
+            "Percentages are computed over local task-name rows. In this artifact, row-level and unique-task percentages are identical because the final CSV has no duplicate exact task names.",
+            "",
+            "## Manual Sanity Check",
+            "",
+            "- A 100-record stratified sample is provided in `manual_check_sample_100.csv`.",
+            "- The sample uses first-pass conservative manual labels and confidence notes.",
+            "- This is a qualitative sanity check, not a validation result.",
+            "- Agreement is not reported because labels were not adjudicated by independent annotators and no trajectory-level ground truth was used.",
             "",
             "## Cautious Hypotheses",
             "",
@@ -811,6 +856,7 @@ def write_key_findings(
             "- The taxonomy is rule-based and preliminary.",
             "- Task names and public metadata may not reveal full trajectory difficulty.",
             "- No official OpenHA/CrossAgent checkpoint inference or Minecraft evaluation was run.",
+            "- The 1200 local task-name records are not the official over-800-task benchmark size reported in the paper framing.",
             "- The representative additions are bounded and are used only to cover task types missing from structured metadata.",
             "",
             "## Possible Future Directions",
@@ -825,21 +871,283 @@ def write_key_findings(
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def evenly_select(rows: list[dict[str, object]], limit: int) -> list[dict[str, object]]:
+    if len(rows) <= limit:
+        return rows
+    if limit <= 1:
+        return rows[:limit]
+    selected: list[dict[str, object]] = []
+    used: set[int] = set()
+    step = (len(rows) - 1) / (limit - 1)
+    for i in range(limit):
+        idx = round(i * step)
+        while idx in used and idx + 1 < len(rows):
+            idx += 1
+        if idx in used:
+            idx = next(j for j in range(len(rows)) if j not in used)
+        used.add(idx)
+        selected.append(rows[idx])
+    return selected
+
+
+def first_pass_manual_category(task_name: str, predicted_category: str) -> str:
+    name = normalize_task_name(task_name)
+    if name.startswith("craft_item") or name.startswith("craft item") or "craft " in name:
+        return "crafting"
+    if name.startswith("smelt_item") or "smelt" in name or "furnace" in name:
+        return "smelting_or_cooking"
+    if name.startswith("mine_block"):
+        return "mining"
+    if name.startswith("kill_entity") or has_any(name, COMBAT_TERMS):
+        return "combat"
+    if name.startswith("interact_block") or name.startswith("drop:") or name.startswith("use "):
+        return "tool_use_or_interaction"
+    if "explore" in name or "cave" in name:
+        return "navigation_or_exploration"
+    if "shelter" in name or name.startswith("build "):
+        return "building_or_shelter"
+    if "obtain" in name:
+        return "long_horizon_obtain"
+    return predicted_category
+
+
+def first_pass_manual_interfaces(category: str, task_name: str) -> str:
+    name = normalize_task_name(task_name)
+    if category == "crafting":
+        labels = [
+            "high_level_planning",
+            "memory_or_prerequisite_reasoning",
+            "mid_level_skill_action",
+        ]
+        if target_part(name) in COMPLEX_ITEMS:
+            labels.append("dynamic_action_space_switching")
+        return ";".join(labels)
+    if category == "smelting_or_cooking":
+        return ";".join(
+            [
+                "high_level_planning",
+                "memory_or_prerequisite_reasoning",
+                "mid_level_skill_action",
+                "visual_grounding_or_mask_action",
+                "dynamic_action_space_switching",
+            ]
+        )
+    if category == "mining":
+        labels = [
+            "mid_level_skill_action",
+            "visual_grounding_or_mask_action",
+            "low_level_control",
+        ]
+        if has_any(name, TOOL_TERMS):
+            labels.append("memory_or_prerequisite_reasoning")
+        return ";".join(labels)
+    if category == "combat":
+        return ";".join(
+            [
+                "visual_grounding_or_mask_action",
+                "low_level_control",
+                "dynamic_action_space_switching",
+            ]
+        )
+    if category == "navigation_or_exploration":
+        return ";".join(
+            [
+                "high_level_planning",
+                "visual_grounding_or_mask_action",
+                "low_level_control",
+                "dynamic_action_space_switching",
+            ]
+        )
+    if category == "building_or_shelter":
+        return ";".join(
+            [
+                "high_level_planning",
+                "memory_or_prerequisite_reasoning",
+                "mid_level_skill_action",
+                "visual_grounding_or_mask_action",
+                "low_level_control",
+                "dynamic_action_space_switching",
+            ]
+        )
+    if category == "long_horizon_obtain":
+        return ";".join(
+            [
+                "high_level_planning",
+                "memory_or_prerequisite_reasoning",
+                "mid_level_skill_action",
+                "visual_grounding_or_mask_action",
+                "low_level_control",
+                "dynamic_action_space_switching",
+            ]
+        )
+    return "high_level_planning;memory_or_prerequisite_reasoning"
+
+
+def manual_confidence_and_note(
+    task_name: str,
+    source: str,
+    predicted_category: str,
+    manual_category: str,
+) -> tuple[str, str]:
+    name = normalize_task_name(task_name)
+    if manual_category != predicted_category:
+        return (
+            "medium",
+            "First-pass label differs from the rule prediction because the task prefix suggests a more conservative category; needs trajectory-level review.",
+        )
+    if source == "manual_representative_sample":
+        return (
+            "high",
+            "Representative sample task is human-readable and directly supports the first-pass label.",
+        )
+    if (
+        name.startswith("craft_item")
+        or name.startswith("mine_block")
+        or name.startswith("smelt_item")
+        or name.startswith("kill_entity")
+        or name.startswith("interact_block")
+        or name.startswith("drop:")
+    ):
+        return (
+            "high",
+            "Task prefix and target object support the first-pass category; trajectory details are still not checked.",
+        )
+    if predicted_category == "mixed_or_unknown":
+        return (
+            "low",
+            "Task name alone is ambiguous; requires benchmark definition or trajectory trace.",
+        )
+    return (
+        "medium",
+        "Plausible from task name, but missing inventory, visual state, and trajectory context.",
+    )
+
+
+def write_manual_check_sample(path: Path, rows: list[dict[str, object]]) -> None:
+    targets = {
+        "mining": 20,
+        "tool_use_or_interaction": 17,
+        "crafting": 17,
+        "building_or_shelter": 16,
+        "smelting_or_cooking": 10,
+        "combat": 10,
+        "long_horizon_obtain": 8,
+        "navigation_or_exploration": 1,
+        "mixed_or_unknown": 1,
+    }
+    grouped: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in rows:
+        grouped[str(row["category"])].append(row)
+    selected: list[dict[str, object]] = []
+    selected_names: set[str] = set()
+    for category, limit in targets.items():
+        candidates = sorted(grouped.get(category, []), key=lambda r: str(r["task_name"]))
+        for row in evenly_select(candidates, limit):
+            selected.append(row)
+            selected_names.add(str(row["task_name"]))
+    if len(selected) < 100:
+        for row in sorted(rows, key=lambda r: str(r["task_name"])):
+            if str(row["task_name"]) in selected_names:
+                continue
+            selected.append(row)
+            selected_names.add(str(row["task_name"]))
+            if len(selected) == 100:
+                break
+    selected = selected[:100]
+
+    out_rows = []
+    for row in selected:
+        task_name = str(row["task_name"])
+        predicted_category = str(row["category"])
+        manual_category = first_pass_manual_category(task_name, predicted_category)
+        confidence, notes = manual_confidence_and_note(
+            task_name,
+            str(row["source"]),
+            predicted_category,
+            manual_category,
+        )
+        out_rows.append(
+            {
+                "task_name": task_name,
+                "source": row["source"],
+                "predicted_category": predicted_category,
+                "predicted_interfaces": row["preferred_interfaces"],
+                "required_information_type": row["required_information_type"],
+                "likely_failure_under_fixed_action_space": row[
+                    "likely_failure_under_fixed_action_space"
+                ],
+                "manual_category": manual_category,
+                "manual_interfaces": first_pass_manual_interfaces(manual_category, task_name),
+                "confidence": confidence,
+                "notes": notes,
+            }
+        )
+    write_csv(
+        path,
+        out_rows,
+        [
+            "task_name",
+            "source",
+            "predicted_category",
+            "predicted_interfaces",
+            "required_information_type",
+            "likely_failure_under_fixed_action_space",
+            "manual_category",
+            "manual_interfaces",
+            "confidence",
+            "notes",
+        ],
+    )
+
+
+def write_manual_check_protocol(path: Path) -> None:
+    text = """# Manual Sanity-Check Protocol
+
+This protocol documents the first-pass sanity check for the OpenHA/CrossAgent action-space taxonomy. It is a qualitative check, not an official validation result.
+
+## Sample
+
+- File: `manual_check_sample_100.csv`
+- Size: 100 task records
+- Sampling: deterministic stratified sample across predicted categories, with rare categories retained when available.
+- Source: `task_taxonomy.csv`
+
+## Labeling Rules
+
+- `manual_category` uses conservative task-name interpretation. When task prefixes such as `craft_item`, `mine_block`, `smelt_item`, `kill_entity`, `interact_block`, or `drop:` are present, the prefix is prioritized over item semantics.
+- `manual_interfaces` lists the action interfaces that appear necessary from the task name alone.
+- `confidence` is `high` when the task verb/prefix clearly supports the first-pass label, `medium` when the task name is plausible but missing trajectory context, and `low` when the task name is too ambiguous for reliable labeling.
+- `notes` explain whether the first-pass label agrees with the rule prediction or needs trajectory-level review.
+
+## What This Check Does Not Claim
+
+- It does not validate the taxonomy against official OpenHA/CrossAgent labels.
+- It does not use simulator rollouts, trajectories, model outputs, or checkpoint inference.
+- It does not report agreement as a benchmark metric.
+- It does not change the official over-800-task benchmark framing from the papers.
+
+## Next Step
+
+A stronger validation pass would use benchmark task definitions or summarized trajectories and would compute category/interface agreement after independent annotation.
+"""
+    path.write_text(text, encoding="utf-8")
+
+
 def write_resume_bullet(path: Path, total: int, metadata_count: int) -> None:
     lines = [
         "# Resume Bullet Drafts",
         "",
         "## Version A: Local Metadata-Derived Task Analysis",
         "",
-        f"- Based on public OpenHA/CrossAgent task metadata, analyzed {total} Minecraft task names with a rule-based action-space taxonomy, quantifying how task types depend on high-level planning, memory/prerequisite reasoning, visual grounding, low-level control, and dynamic action-space switching; summarized fixed-action-space failure modes and future research directions.",
+        f"- Built an exploratory OpenHA/CrossAgent action-space taxonomy over {total} local task-name records parsed from public metadata/config files and bounded representative samples, quantifying how task types may depend on high-level planning, memory/prerequisite reasoning, visual grounding, low-level control, and dynamic action-space switching.",
         "",
         "## Version B: Bounded Sample Framing",
         "",
-        f"- Built a lightweight OpenHA/CrossAgent action-space taxonomy over {total} metadata-derived and representative Minecraft tasks, comparing crafting, smelting, mining, combat, navigation, building, and long-horizon obtain tasks across planning, memory, visual grounding, low-level control, and dynamic switching requirements.",
+        f"- Built a lightweight OpenHA/CrossAgent action-space taxonomy over local metadata/config-derived records, comparing crafting, smelting, mining, combat, navigation, building, and long-horizon obtain task types across planning, memory, visual grounding, low-level control, and dynamic switching requirements without treating the local count as the official benchmark size.",
         "",
         "## 中文版本",
         "",
-        f"- 基于 OpenHA/CrossAgent 公开任务元数据与代表性 Minecraft 任务样本，对 {total} 个任务进行 action-space taxonomy 分析，量化不同任务类型对 high-level planning、memory/prerequisite reasoning、visual grounding、low-level control 与 dynamic action-space switching 的依赖，并总结固定动作空间下的典型失败模式。",
+        f"- 基于 OpenHA/CrossAgent 公开 metadata/config task-name records 与少量代表性 Minecraft 样本，构建探索性的 action-space taxonomy，分析不同任务类型对 high-level planning、memory/prerequisite reasoning、visual grounding、low-level control 与 dynamic action-space switching 的依赖；该本地记录数不作为官方 benchmark 规模。",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
 
@@ -910,6 +1218,8 @@ def main() -> int:
     write_metadata_report(root / "metadata_source_report.md", metadata, rows)
     write_failure_modes(out_dir / "example_failure_modes.md")
     write_key_findings(out_dir / "key_findings.md", rows, category_rows, interface_rows)
+    write_manual_check_sample(out_dir / "manual_check_sample_100.csv", rows)
+    write_manual_check_protocol(out_dir / "manual_check_protocol.md")
     write_resume_bullet(
         out_dir / "resume_bullet.md",
         len(rows),

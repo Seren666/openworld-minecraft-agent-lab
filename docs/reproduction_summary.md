@@ -21,7 +21,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 | JARVIS-VLA action demo | Lightweight local demo complete | Toy action schema, rule-based selector, generated Markdown trace | Demonstrates the VLA action-representation idea without official model checkpoints. |
 | JARVIS-VLA GPU action scorer | Toy GPU scorer complete | Tiny deterministic PyTorch scorer ran one forward pass on Blackwell | Infrastructure evidence only; not JARVIS-VLA inference. |
 | OpenHA / CrossAgent bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note | Conceptual bridge only; no weights, datasets, official rollout, SFT, or GRPO training. |
-| OpenHA/CrossAgent action-space taxonomy | Metadata-based quantitative analysis complete | 1200 task-name rows, category/interface summaries, failure-mode notes | Rule-based and preliminary; not official model evaluation. |
+| OpenHA/CrossAgent action-space taxonomy | Exploratory metadata/config-based analysis complete | Local task-name records, category/interface summaries, failure-mode notes, and manual sanity-check sample | Rule-based and preliminary; not official model evaluation or official benchmark-size reporting. |
 | World models / diffusion note | Reading direction documented | Concise world-model note | Next-step reading only; no world-model or diffusion reproduction. |
 | MineStudio setup | Bounded setup checks blocked | Smoke tests, second-pass install notes | Full dependency setup remains unresolved; simulator imports need more controlled setup. |
 | GPU sanity | Infrastructure check complete | Old torch failure documented; modern cu128 success documented | `torch 2.11.0+cu128` under `/root/autodl-tmp` supports `sm_120` and ran a small CUDA tensor workload. |
@@ -39,7 +39,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 - I audited official or relevant repositories.
 - I built lightweight demos for planning, memory, visual grounding, and action representation.
 - I added a paper/repo bridge from action representation to OpenHA/CrossAgent action-space hierarchy and GRPO-style post-training.
-- I added a metadata-based action-space taxonomy over 1200 OpenHA/CrossAgent task names and representative Minecraft tasks.
+- I added a metadata/config-based action-space taxonomy over local OpenHA/CrossAgent task-name records and representative Minecraft examples, with explicit scope limits.
 - I added world-model/diffusion notes as a future reading direction.
 - I documented blockers for official end-to-end reproduction attempts.
 - I kept external repos, environments, caches, large assets, and logs outside Git.

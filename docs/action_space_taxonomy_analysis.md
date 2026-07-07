@@ -4,7 +4,7 @@
 
 OpenHA and CrossAgent shift the Minecraft-agent question from only predicting an action to choosing the right action granularity. A long-horizon task may need high-level planning, memory/prerequisite reasoning, mid-level skills, visual grounding, and low-level control at different stages. This lightweight taxonomy asks which task types appear to depend on which interfaces.
 
-This is a metadata-based and rule-based analysis. It is not official OpenHA/CrossAgent evaluation.
+This is an exploratory, metadata/config-based, rule-based analysis. It is not official OpenHA/CrossAgent evaluation, and it does not report the official benchmark size.
 
 ## Data Source
 
@@ -18,9 +18,29 @@ The analysis uses a local OpenHA repository snapshot outside this project reposi
 | Local source type | GitHub zip snapshot inspected outside this repository |
 | Main metadata source | `CrossAgent/STRL/data_processor/task_suc_rate.json` |
 | Additional task source | `CrossAgent/STRL/data_processor/utils/task_list.json` and rollout-debug task directory names |
-| Scope | full local metadata-derived task names plus bounded representative additions |
+| Scope | local metadata/config-derived task-name records plus bounded representative additions |
 
-The structured metadata provided 1192 unique task names from `task_suc_rate.json`, 30 tasks from `task_list.json`, and 9 inferred rollout-debug task names. After de-duplication and adding representative tasks for shelter, cave exploration, furnace use, and long-horizon obtain examples, the final taxonomy artifact covers 1200 task rows and 1200 unique task names.
+The OpenHA/CrossAgent paper framing describes an over-800-task benchmark. The 1200 records in this repository are not presented as that official benchmark size. They are local unique task-name records parsed from public metadata/config outputs plus bounded representative additions.
+
+## Source Breakdown
+
+| Source path | Source type | Raw unique names found | Final rows mentioning source | Exclusive new rows after exact-name de-duplication | Entry interpretation |
+| --- | --- | ---: | ---: | ---: | --- |
+| `CrossAgent/STRL/data_processor/task_suc_rate.json` | CrossAgent metadata/config summary | 1192 | 1192 | 1162 | task-name records / atomic or config-level task variants, not the official benchmark-size denominator |
+| `CrossAgent/STRL/data_processor/utils/task_list.json` | CrossAgent task-list/config file | 30 | 30 | 0 | task-list entries that overlap with `task_suc_rate.json` in this snapshot |
+| rollout-debug directory names | generated/debug directory labels | 9 | 9 | 0 | directory-derived task labels that overlap with config metadata; not new benchmark tasks |
+| `manual_representative_sample` | manually added analysis sample | 8 | 8 | 8 | bounded Minecraft examples added only to cover readable task types such as shelter, cave exploration, and furnace use |
+
+### Final Row-Source Combinations
+
+| Final `source` value in `task_taxonomy.csv` | Row count |
+| --- | ---: |
+| `CrossAgent/STRL/data_processor/task_suc_rate.json` | 1162 |
+| `CrossAgent/STRL/data_processor/utils/task_list.json; CrossAgent/STRL/data_processor/task_suc_rate.json` | 21 |
+| `CrossAgent/STRL/data_processor/utils/task_list.json; CrossAgent/STRL/data_processor/task_suc_rate.json; rollout_debug directory names` | 9 |
+| `manual_representative_sample` | 8 |
+
+The final union contains 1200 unique task-name records. The row count is larger than the paper-level over-800-task benchmark framing because the local metadata/config files include atomic names and config-level variants. Source counts should not be summed as an official benchmark count.
 
 ## Method
 
@@ -35,7 +55,14 @@ Each task is assigned:
 
 The labels are intentionally cautious. They are designed to surface action-space pressure, not to estimate official success rate.
 
-## Quantitative Summary
+## Main Findings
+
+- The taxonomy is useful as a task-interface pressure map, not as an official benchmark statistic.
+- The local records suggest that Minecraft tasks pressure different action granularities: recipe-like tasks lean toward prerequisite and inventory reasoning, while mining, combat, building, and navigation-like tasks lean more toward visual grounding and low-level control.
+- Dynamic action-space switching appears to be relevant for a meaningful subset of local records, but it should not be treated as universally required for every task.
+- The most useful next step is trajectory-level failure analysis, because task names alone cannot reveal full world state, inventory state, or visual ambiguity.
+
+## Detailed Exploratory Statistics
 
 ### Row And Unique-Task Accounting
 
@@ -48,7 +75,7 @@ The labels are intentionally cautious. They are designed to surface action-space
 
 Duplicates do not exist in the final taxonomy CSV. Some upstream sources overlap conceptually because `task_suc_rate.json`, `task_list.json`, rollout-debug directory names, and bounded representative additions can describe similar Minecraft task families, but the analysis script de-duplicates exact task names before writing `task_taxonomy.csv`.
 
-All percentages in the category and interface tables below are computed over task rows. In the current artifact, this is numerically equivalent to percentages over unique task names because each row has a unique `task_name`.
+All percentages in the category and interface tables below are computed over local task-name rows. In the current artifact, this is numerically equivalent to percentages over unique task names because each row has a unique `task_name`. These percentages should be interpreted as exploratory metadata/config statistics, not official benchmark results.
 
 ### Category Distribution
 
@@ -79,11 +106,20 @@ Percentages can sum above 100% because a task can require multiple interfaces.
 
 ## Key Observations
 
-- Different Minecraft task types favor different action granularities. A single fixed action representation is likely too rigid across mining, crafting, smelting, combat, building, and long-horizon obtain tasks.
-- Crafting and smelting tasks often depend on recipe/prerequisite and inventory state. They are less about raw controller movement and more about valid staged preconditions.
-- Mining, combat, navigation, and building tasks often need visual grounding and low-level control because the agent must localize objects, aim, place, move, or react.
-- Long-horizon obtain tasks likely need dynamic action-space switching because they combine planning, memory, visual grounding, skill execution, and low-level control.
+- Different Minecraft task types appear to favor different action granularities. A single fixed action representation is likely too rigid across mining, crafting, smelting, combat, building, and long-horizon obtain tasks.
+- Crafting and smelting tasks often appear to depend on recipe/prerequisite and inventory state. They are less about raw controller movement and more about valid staged preconditions.
+- Mining, combat, navigation, and building tasks often appear to need visual grounding and low-level control because the agent must localize objects, aim, place, move, or react.
+- Long-horizon obtain tasks are likely candidates for dynamic action-space switching because they combine planning, memory, visual grounding, skill execution, and low-level control.
 - A useful research direction is not just "which action is next?" but "which action interface should be active at this task stage?"
+
+## Manual Sanity Check
+
+The folder includes a 100-record stratified sanity-check sample:
+
+- `experiments/openha-action-space-analysis/results/manual_check_sample_100.csv`
+- `experiments/openha-action-space-analysis/results/manual_check_protocol.md`
+
+This sample uses conservative first-pass manual labels and confidence notes. It is not a validation result and does not report agreement. Its purpose is to expose likely ambiguity in task-name-only classification, especially for config-style names where the command prefix and object semantics can imply different categories.
 
 ## Preliminary Research Questions
 
@@ -97,6 +133,7 @@ Percentages can sum above 100% because a task can require multiple interfaces.
 - No model training was run.
 - No checkpoint inference was run.
 - The taxonomy is rule-based and preliminary.
+- The 1200 local task-name records are not the official over-800-task benchmark size described in the OpenHA/CrossAgent paper framing.
 - Task names and public metadata do not fully reveal trajectory difficulty, inventory state, world layout, or visual ambiguity.
 - Representative additions are bounded and are used only to cover task types missing from the local structured metadata.
 

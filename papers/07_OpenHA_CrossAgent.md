@@ -72,7 +72,7 @@ DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual mask -> JARVIS-VLA action pr
 - Confirmed the presence of `CrossAgent/` material in the repository.
 - Summarized README-level installation and asset requirements.
 - Connected OpenHA/CrossAgent to this repository's prior planning, memory, grounding, and action-interface demos.
-- Added a lightweight metadata-based action-space taxonomy over 1200 OpenHA/CrossAgent task names and representative Minecraft tasks.
+- Added a lightweight metadata/config-based action-space taxonomy over local OpenHA/CrossAgent task-name records and representative Minecraft examples, without treating the local record count as the official benchmark size.
 
 ## What Is Lightweight Feasible
 
