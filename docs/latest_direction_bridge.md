@@ -122,6 +122,15 @@ This repository does not reproduce a world model. The correct positioning is tha
 | World-model reproduction | Not lightweight | Requires video/model training or large pretrained assets. |
 | World-model reading note | Lightweight | Useful for research positioning without claiming unsupported results. |
 
+## Added Repository Analysis
+
+The repository now includes a lightweight OpenHA/CrossAgent action-space taxonomy:
+
+- `docs/action_space_taxonomy_analysis.md`
+- `experiments/openha-action-space-analysis/`
+
+The analysis uses public local metadata-derived task names plus bounded representative additions. It classifies 1200 task rows by category, interface pressure, required information type, and likely fixed-action-space failure. The key preliminary result is that dynamic action-space switching is assigned to 463 tasks (38.6%), while memory/prerequisite reasoning and visual grounding appear in 851 tasks (70.9%) and 737 tasks (61.4%), respectively.
+
 ## Next Study Targets
 
 1. Read OpenHA for action-space hierarchy and Chain of Action.

@@ -72,6 +72,7 @@ DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual mask -> JARVIS-VLA action pr
 - Confirmed the presence of `CrossAgent/` material in the repository.
 - Summarized README-level installation and asset requirements.
 - Connected OpenHA/CrossAgent to this repository's prior planning, memory, grounding, and action-interface demos.
+- Added a lightweight metadata-based action-space taxonomy over 1200 OpenHA/CrossAgent task names and representative Minecraft tasks.
 
 ## What Is Lightweight Feasible
 
@@ -79,6 +80,7 @@ DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual mask -> JARVIS-VLA action pr
 - Build a toy action selector that chooses among high-level, mid-level, and low-level actions.
 - Compare failure modes when the wrong action abstraction is selected.
 - Extend the JARVIS-VLA toy action demo with an action-level selector.
+- Use the taxonomy results to propose memory-conditioned or task-stage-conditioned interface selection rules.
 
 ## What Remains Blocked Or Deferred
 
@@ -92,3 +94,5 @@ DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual mask -> JARVIS-VLA action pr
 ## Takeaway
 
 OpenHA and CrossAgent are important because they shift the research question from "how do we plan or predict an action?" to "which action space should the agent use, and how can post-training improve that choice?"
+
+The action-space taxonomy adds one concrete preliminary question: can task metadata and failure traces predict when the agent should move from mid-level skills to visual grounding, low-level control, or dynamic hierarchical switching?

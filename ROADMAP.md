@@ -20,7 +20,8 @@ The immediate aim is to make this story clear enough for a researcher to underst
 2. Add a GROOT reading note focused on video instruction, goal representation, and open-ended behavior.
 3. Add an OmniJARVIS reading note focused on unified VLA tokenization and generalist Minecraft control.
 4. Refine the OpenHA/CrossAgent bridge into a compact action-space comparison diagram.
-5. Add a short reading comparison between world models, video diffusion, and model-based RL for open-world agents.
+5. Extend the OpenHA/CrossAgent action-space taxonomy with task-stage annotations when safe trajectory summaries are available.
+6. Add a short reading comparison between world models, video diffusion, and model-based RL for open-world agents.
 
 ## Focused Future Research Directions
 
@@ -34,6 +35,7 @@ Choose one focused direction instead of starting large training immediately:
 | Visual prompt interface | Extend the ROCKET-1 toy demo into more structured mask/affordance examples. |
 | Action space comparison | Compare discrete action schemas for Minecraft-style VLA control. |
 | GRPO post-training reading | Study when outcome-based post-training helps hierarchical action-space learning. |
+| Action-space taxonomy | Analyze which task families pressure planning, memory, visual grounding, low-level control, or dynamic switching. |
 | World-model planning | Compare imagined-rollout ideas without downloading large model weights or datasets. |
 
 ## Deferred Until There Is A Clear Research Direction

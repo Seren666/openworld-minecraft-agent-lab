@@ -1,0 +1,7 @@
+preferred_interface,task_count,percentage_of_tasks
+mid_level_skill_action,1135,94.6
+memory_or_prerequisite_reasoning,851,70.9
+visual_grounding_or_mask_action,737,61.4
+low_level_control,658,54.8
+high_level_planning,569,47.4
+dynamic_action_space_switching,463,38.6
