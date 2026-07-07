@@ -3,7 +3,7 @@
 This repository focuses on research preparation, not claims of official benchmark reproduction. The main story is:
 
 ```text
-planning -> memory -> visual grounding -> action prediction -> dynamic action-space selection
+planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
 This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
@@ -18,7 +18,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 | ROCKET-1 audit | Bounded feasibility check complete | Official repo audit, dependency and SAM-2/MCP notes | Official inference requires model weights, SAM-2 checkpoints, simulator, rendering, and dependency setup. |
 | ROCKET-1 visual prompt demo | Lightweight local demo complete | Synthetic grid scenes, mask prompts, SVG assets, generated Markdown trace | Demonstrates visual-temporal prompting without official checkpoints or simulator execution. |
 | JARVIS-VLA audit | Bounded feasibility check complete | Official repo audit, vLLM/MineStudio rollout notes, syntax smoke | Official inference requires 7B-scale model serving, datasets, MineStudio, rendering, and careful output storage. |
-| JARVIS-VLA action demo | Lightweight local demo complete | Toy action schema, rule-based selector, generated Markdown trace | Demonstrates the VLA action-interface idea without official model checkpoints. |
+| JARVIS-VLA action demo | Lightweight local demo complete | Toy action schema, rule-based selector, generated Markdown trace | Demonstrates the VLA action-representation idea without official model checkpoints. |
 | JARVIS-VLA GPU action scorer | Toy GPU scorer complete | Tiny deterministic PyTorch scorer ran one forward pass on Blackwell | Infrastructure evidence only; not JARVIS-VLA inference. |
 | OpenHA / CrossAgent bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note | Conceptual bridge only; no weights, datasets, official rollout, SFT, or GRPO training. |
 | World models / diffusion note | Reading direction documented | Concise world-model note | Next-step reading only; no world-model or diffusion reproduction. |
@@ -36,8 +36,8 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 ## Evidence-Supported Scope
 
 - I audited official or relevant repositories.
-- I built lightweight demos for planning, memory, visual grounding, and action prediction.
-- I added a paper/repo bridge from action prediction to OpenHA/CrossAgent action-space hierarchy and GRPO-style post-training.
+- I built lightweight demos for planning, memory, visual grounding, and action representation.
+- I added a paper/repo bridge from action representation to OpenHA/CrossAgent action-space hierarchy and GRPO-style post-training.
 - I added world-model/diffusion notes as a future reading direction.
 - I documented blockers for official end-to-end reproduction attempts.
 - I kept external repos, environments, caches, large assets, and logs outside Git.
@@ -59,7 +59,7 @@ Run one compact comparison across five interfaces on the same task set:
 - DEPS-style dependency planning
 - JARVIS-1-style memory retrieval
 - ROCKET-1-style visual/mask prompting
-- JARVIS-VLA-style action prediction
+- JARVIS-VLA-style action representation
 - OpenHA/CrossAgent-style action-space selection
 
 This is low-cost, research-relevant, and does not require simulator rendering or large assets.

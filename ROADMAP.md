@@ -4,10 +4,10 @@ This roadmap is intentionally practical and research-oriented. The goal is to ke
 
 ## Current Story
 
-The repository now compares four interfaces for Minecraft open-world agents and extends them toward the latest action-space direction:
+The repository now compares core interfaces for Minecraft open-world agents and extends them toward the latest action-space direction:
 
 ```text
-DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual grounding -> JARVIS-VLA action prediction -> OpenHA/CrossAgent dynamic action-space selection
+planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
 This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
@@ -33,7 +33,7 @@ Choose one focused direction instead of starting large training immediately:
 | Failure case analysis | Build a taxonomy for tool, recipe, spatial, and action-selection failures. |
 | Visual prompt interface | Extend the ROCKET-1 toy demo into more structured mask/affordance examples. |
 | Action space comparison | Compare discrete action schemas for Minecraft-style VLA control. |
-| GRPO post-training reading | Study when outcome-based post-training helps dynamic action-level selection. |
+| GRPO post-training reading | Study when outcome-based post-training helps hierarchical action-space learning. |
 | World-model planning | Compare imagined-rollout ideas without downloading large model weights or datasets. |
 
 ## Deferred Until There Is A Clear Research Direction

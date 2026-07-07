@@ -3,7 +3,7 @@
 This note extends the repository story beyond earlier CraftJarvis planning, memory, grounding, and VLA-interface papers.
 
 ```text
-DEPS planning -> JARVIS-1 memory -> ROCKET-1 visual grounding -> JARVIS-VLA action prediction -> OpenHA/CrossAgent dynamic action-space selection
+planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
 This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
@@ -43,7 +43,7 @@ The earlier notes in this repository isolate four important interfaces:
 - DEPS / MC-Planner asks how to decompose long-horizon Minecraft goals into dependency-aware plans.
 - JARVIS-1 asks how memory can reduce repeated planning mistakes.
 - ROCKET-1 asks how visual/mask context can ground ambiguous language goals.
-- JARVIS-VLA asks how a model can map visual-language context into executable actions.
+- JARVIS-VLA asks how a model can represent visual-language context as executable actions.
 
 Together, these still leave a central open question: what action space should the agent use at each moment? A Minecraft agent may need high-level skills, mid-level structured actions, or low-level keyboard/mouse control depending on the task phase. A single fixed action interface can be too coarse for precise control or too low-level for long-horizon planning.
 
@@ -57,7 +57,7 @@ Which level of action abstraction is appropriate for the current task and state?
 
 OpenHA is relevant because it treats action representation as a first-class research problem rather than a hidden controller detail. Its README positions the project around hierarchical agentic models and highlights a Chain of Action view, where the agent reasons across levels of abstraction.
 
-For this repository, OpenHA is a bridge from "predict the next action" to "choose the right action space for the next decision." That is exactly the gap left after JARVIS-VLA-style action prediction.
+For this repository, OpenHA is a bridge from "represent the next executable action" to "choose the right action space for the next decision." That is exactly the gap left after JARVIS-VLA-style action representation.
 
 ## CrossAgent: Dynamic Cross-Level Action Selection
 
@@ -75,7 +75,7 @@ This is a natural continuation of the existing repository story:
 planning tells us what should happen
 memory reminds us what usually goes wrong
 visual grounding identifies what the agent should interact with
-VLA action prediction selects an executable next step
+VLA action representation selects an executable next step
 CrossAgent asks which action level should be used for that step
 ```
 
@@ -83,12 +83,12 @@ CrossAgent asks which action level should be used for that step
 
 CrossAgent's direction points toward post-training rather than only imitation. SFT can teach the model the format and distribution of good actions, but long-horizon Minecraft behavior also needs feedback from success, failure, and task progress.
 
-GRPO-style post-training is relevant because it can optimize action choices using grouped rollout feedback without requiring a separate value model in the same way as some older RLHF-style pipelines. For Minecraft agents, the important conceptual point is not that this repository has run GRPO. It has not. The point is that GRPO gives a language/VLA policy a way to improve action-space decisions from task-level outcomes.
+GRPO-style post-training is relevant because it can optimize action choices using grouped rollout feedback without requiring a separate value model in the same way as some older RLHF-style pipelines. For Minecraft agents, the important conceptual point is not that this repository has run GRPO. It has not. The point is that GRPO gives a language/VLA policy a way to improve hierarchical action-space decisions from task-level outcomes.
 
 Safe claim for this repository:
 
 ```text
-I audited the OpenHA/CrossAgent direction and identified GRPO-based post-training as a next reading target for dynamic action-space selection.
+I audited the OpenHA/CrossAgent direction and identified GRPO-based post-training as a next reading target for hierarchical action-space learning.
 ```
 
 Unsafe claim:

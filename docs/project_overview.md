@@ -11,7 +11,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 ## Research Thread
 
 ```text
-planning -> memory -> visual grounding -> action prediction -> dynamic action-space selection
+planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
 | Component | Research role |
@@ -19,8 +19,8 @@ planning -> memory -> visual grounding -> action prediction -> dynamic action-sp
 | DEPS / MC-Planner | Dependency-aware planning for long-horizon tasks. |
 | JARVIS-1 | Memory-augmented multimodal planning. |
 | ROCKET-1 | Visual-temporal grounding through target/mask context. |
-| JARVIS-VLA | Vision-language-action mapping from observation to action. |
-| OpenHA / CrossAgent | Hierarchical action spaces and dynamic cross-level action selection. |
+| JARVIS-VLA | Vision-language-action representation from observation to action. |
+| OpenHA / CrossAgent | Hierarchical action-space learning and dynamic cross-level action selection. |
 | World models / diffusion models | Future direction for predictive simulation and imagined rollouts. |
 
 ## Completed Research Preparation
@@ -29,7 +29,7 @@ planning -> memory -> visual grounding -> action prediction -> dynamic action-sp
 - Built a lightweight DEPS-style planning demo for Minecraft long-horizon tasks.
 - Inspected JARVIS-1 fixed memory through aggregate statistics and built a toy memory-augmented planner.
 - Built a ROCKET-1-style visual prompt demo with synthetic mask scenes.
-- Built a JARVIS-VLA-style action-interface demo mapping observations and instructions to structured actions.
+- Built a JARVIS-VLA-style action-representation demo mapping observations and instructions to structured actions.
 - Ran a tiny GPU-backed toy action scorer on the AutoDL Blackwell machine using a modern PyTorch CUDA 12.8 environment.
 - Added an OpenHA/CrossAgent bridge for action-space hierarchy, SFT, and GRPO-style post-training.
 - Added concise world-model and diffusion-model notes as future research directions.
@@ -40,14 +40,14 @@ planning -> memory -> visual grounding -> action prediction -> dynamic action-sp
 - One-shot language planning is fragile in long-horizon Minecraft tasks.
 - Memory can help avoid repeated prerequisite mistakes, such as invalid tools or missing fuel.
 - Language-only subgoals lose spatial detail when multiple objects or affordances are visible.
-- VLA-style action prediction shifts the problem from "what should be done" to "which action should be selected next".
-- OpenHA/CrossAgent shift the next problem to dynamic action-space selection.
+- VLA-style action representation shifts the problem from "what should be done" to "which action should be selected next".
+- OpenHA/CrossAgent shift the next problem to hierarchical action-space learning.
 - World models suggest a future route for imagined rollouts, failure prediction, and safer RL, but this is only a reading direction here.
 - Official systems require substantial setup, so this repository separates what was audited, what was demonstrated with toy examples, and what remains blocked.
 
 ## Reproduction Scope
 
-- This repository does not claim official end-to-end reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, OpenHA/CrossAgent, or MineStudio.
+- This repository does not claim full reproduction or official end-to-end reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, OpenHA/CrossAgent, or MineStudio.
 - It does not claim official Minecraft evaluation results.
 - It does not claim official model training, GRPO post-training, world-model reproduction, or paper-metric matching.
 - It does not commit model weights, checkpoints, datasets, raw videos, secrets, or external repository code.

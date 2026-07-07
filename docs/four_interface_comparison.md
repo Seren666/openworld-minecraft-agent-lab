@@ -1,12 +1,12 @@
 # Four Interface Comparison
 
-This document consolidates the repository story:
+This document fits into the full repository story:
 
 ```text
-planning -> memory -> visual grounding -> action prediction
+planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
-The goal is not to claim official reproduction. The goal is to show how four papers expose different interfaces needed by open-world Minecraft agents.
+The goal is not to claim full reproduction. The goal is to show how four papers expose the first four interfaces needed by open-world Minecraft agents. The latest-direction bridge extends this sequence toward hierarchical action-space learning in OpenHA/CrossAgent.
 
 ## Compact Comparison
 
@@ -15,7 +15,7 @@ The goal is not to claim official reproduction. The goal is to show how four pap
 | Planning | DEPS / MC-Planner | What subgoals should be attempted, and in what dependency order? | Task instruction, current state, known recipes, failure feedback | Ordered subgoals or plan steps | Missing prerequisites and brittle one-shot planning | Does not ground the plan in perception or controller actions |
 | Memory | JARVIS-1 | What prior task knowledge should be retrieved for this situation? | Task, observation summary, inventory, memory entries | Relevant prior plans, constraints, and reminders | Repeating known mistakes such as wrong tools or missing fuel | Memory can be stale, irrelevant, or too abstract |
 | Visual grounding | ROCKET-1 | Which visible object or region should the agent interact with? | Image, segmentation mask, interaction type, temporal context | Grounded target and affordance cue | Language-only subgoals losing spatial detail | Does not by itself decide the long-horizon plan or full action sequence |
-| Action prediction | JARVIS-VLA | Which executable game action should be selected next? | Visual-language context, state/history, action schema | Structured keyboard/mouse-style action | Gap between "what to do" and "which action to execute" | Requires model training, simulator integration, and robust action representation |
+| Action representation | JARVIS-VLA | Which executable game action should be selected next? | Visual-language context, state/history, action schema | Structured keyboard/mouse-style action | Gap between "what to do" and "which action to execute" | Requires model training, simulator integration, and robust action representation |
 
 ## Shared Minecraft Tasks
 
@@ -95,17 +95,17 @@ It reduces wrong-object errors, such as mining the wrong tree, using the craftin
 
 ### What It Cannot Solve Alone
 
-Visual grounding does not fully solve task planning, memory retrieval, or low-level action prediction.
+Visual grounding does not fully solve task planning, memory retrieval, or low-level action representation.
 
 ### Connection To The Next Interface
 
 Once the target and affordance are grounded, a VLA interface must decide the next executable action.
 
-## 4. JARVIS-VLA: Action Prediction / VLA Interface
+## 4. JARVIS-VLA: Action Representation / VLA Interface
 
 ### What Problem It Addresses
 
-JARVIS-VLA-style action prediction addresses the control gap. A high-level instruction like "collect wood" must become a concrete action such as attack the visible tree trunk.
+JARVIS-VLA-style action representation addresses the control gap. A high-level instruction like "collect wood" must become a concrete action such as attack the visible tree trunk.
 
 ### What Information It Adds
 
@@ -120,15 +120,15 @@ It reduces the gap between abstract plans and controller execution, including in
 
 ### What It Cannot Solve Alone
 
-Action prediction still depends on good data, model training, simulator integration, and upstream planning or grounding signals.
+Action representation still depends on good data, model training, simulator integration, and upstream planning or grounding signals.
 
 ### Connection Back To The Whole Agent
 
-Action prediction closes the loop: plans, memories, and visual targets become executable control decisions.
+Action representation closes the loop: plans, memories, and visual targets become executable control decisions.
 
 ## Task-Level View
 
-| Task | Planning question | Memory question | Visual grounding question | Action prediction question |
+| Task | Planning question | Memory question | Visual grounding question | Action representation question |
 | --- | --- | --- | --- | --- |
 | obtain iron ingot | What are the required subgoals before smelting? | Has iron mining failed before because of tool level or missing fuel? | Which block is iron ore and which block is furnace? | Mine, use, equip, craft, or wait next? |
 | craft stone sword | What ingredients and station are required? | What recipe constraints should be recalled? | Which visible station or inventory slot matters? | Use crafting table or craft item now? |
@@ -138,4 +138,4 @@ Action prediction closes the loop: plans, memories, and visual targets become ex
 
 ## Research Takeaway
 
-No single interface is sufficient. Open-world Minecraft agents need planning for task structure, memory for reusable knowledge, visual grounding for target selection, and action prediction for executable control.
+No single interface is sufficient. Open-world Minecraft agents need planning for task structure, memory for reusable knowledge, visual grounding for target selection, and action representation for executable control.
