@@ -14,12 +14,12 @@ MineStudio matters for Minecraft open-world agent experiments because it provide
 | CUDA compiler | `11.8` |
 | Conda env | `/root/autodl-tmp/conda_envs/minestudio-smoke` |
 | Python | `3.10.20` |
-| PyTorch | not installed in this no-deps smoke env |
-| Java | unavailable |
+| PyTorch | not installed in this bounded import-level env |
+| Java | OpenJDK 8 available inside the Conda env after blocker-reduction pass |
 | Display / Xvfb | unavailable |
 | Storage note | root filesystem was nearly full; env/cache/temp files were kept under `/root/autodl-tmp` |
 
-`CUDA_VISIBLE_DEVICES=0` was set for the smoke test, although no CUDA workload was run because PyTorch was not installed in this minimal environment.
+`CUDA_VISIBLE_DEVICES=0` was set for the smoke test, although no CUDA workload was run because PyTorch was not installed in this bounded environment.
 
 ## External Repo
 
@@ -38,8 +38,8 @@ The external repository remained under `/root/autodl-tmp/external_repos/MineStud
 | Tier | Goal | Command summary | Status | Result / blocker |
 | --- | --- | --- | --- | --- |
 | T0 | install/import smoke test | create Python 3.10 env; `pip install --no-deps -e .`; import `minestudio`; inspect package metadata | passed | top-level import succeeded; package metadata reports `1.1.5` |
-| T1 | module inventory and dry-run checks | list top-level modules; import key modules; inspect config paths | partial | module inventory succeeded; most key modules failed on missing dependencies |
-| T2 | minimal simulator / rollout attempt | check display/Java; try simulator imports before launch | blocked | simulator import failed on missing `cv2`; Java, display, and Xvfb were unavailable |
+| T1 | module inventory and dry-run checks | install small import dependencies; list top-level modules; import key modules | partial, improved | `cv2`, `numpy`, `yaml`, `absl`, `lmdb`, `minestudio.utils`, and `minestudio.online` now import; simulator/data/model/offline paths now stop at missing `torch` |
+| T2 | minimal simulator / runtime probe | check Java/display; try simulator import before reset | blocked | simulator import now fails on missing `torch`; Java is available in the env, but `DISPLAY` and Xvfb are still unavailable |
 
 ## What Ran Successfully
 
@@ -51,24 +51,25 @@ The external repository remained under `/root/autodl-tmp/external_repos/MineStud
 - Package metadata reported version `1.1.5`.
 - Top-level module inventory found `benchmark`, `data`, `inference`, `models`, `offline`, `online`, `simulator`, `tutorials`, and `utils`.
 - `minestudio.online` imported in the no-deps environment.
+- The immediate `cv2` blocker was resolved by installing `opencv-python-headless`.
+- Small import dependencies `numpy`, `PyYAML`, `absl-py`, `lmdb`, `coloredlogs`, `rich`, `requests`, and `lxml` were installed.
+- `minestudio.utils` now imports.
+- OpenJDK 8 is available inside the `minestudio-smoke` Conda environment when the env `bin` directory is on `PATH`.
 
 ## Blockers
 
-- `minestudio.simulator` failed because `cv2` was missing.
-- `minestudio.data` failed because `lmdb` was missing.
-- `minestudio.offline` failed because `torch` was missing.
-- `minestudio.inference` failed because `ray` was missing.
-- `minestudio.benchmark` failed because `yaml` was missing.
-- `minestudio.models` failed because `numpy` was missing.
-- `minestudio.utils` failed because `absl` was missing.
-- Java was unavailable in the smoke env.
+- `minestudio.simulator` now fails because `torch` is missing.
+- `minestudio.data`, `minestudio.models`, and `minestudio.offline` also stop at missing `torch`.
+- `minestudio.benchmark` progressed past `yaml` and now stops at missing `huggingface_hub`.
+- `minestudio.inference` still fails because `ray` is missing.
 - `DISPLAY` was unset and `Xvfb` was unavailable.
+- The installed `opencv-python-headless` version is sufficient for `cv2` import, but it is newer than the version pinned by MineStudio metadata. A stricter dependency pass should align versions intentionally.
 
 ## Implications For Future Work
 
-This smoke test confirms that MineStudio can be wired into a clean AutoDL environment at the package level without placing environments or caches on the small root filesystem. The next useful step is not a long rollout. It is a bounded dependency pass that installs only enough packages to import the simulator, benchmark, data, and model modules.
+This smoke test confirms that MineStudio can be wired into a clean AutoDL environment at the package level without placing environments or caches on the small root filesystem. The blocker-reduction pass also confirms that the first simulator import blocker can be moved from `cv2` to `torch` without installing datasets, checkpoints, or model weights.
 
-Once imports are stable, the next simulator attempt should add Java and display support, then try only a minimal reset and 1-5 scripted/no-op steps.
+The next useful step is not a long rollout. It is a bounded dependency pass that installs a Blackwell-compatible PyTorch build and display support, then rechecks simulator import before any reset or step attempt.
 
 ## Limitations
 

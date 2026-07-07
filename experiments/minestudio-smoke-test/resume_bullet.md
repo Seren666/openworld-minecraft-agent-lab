@@ -6,7 +6,11 @@
 
 ## Version B: T0/T1 Passed But T2 Blocked
 
-- 完成 MineStudio 安装、import 与核心模块入口 smoke test，系统记录 simulator / rollout 阶段的依赖与环境 blocker，为后续 OpenHA/CrossAgent 工具链复现提供可追踪路径。
+- 完成 MineStudio 安装、import 与核心模块入口 smoke test，并通过小规模依赖补齐解决 `cv2` 阻塞、定位 simulator import 的下一阶段 `torch` blocker；未运行训练、checkpoint 推理或 Minecraft rollout。
+
+## Version B2: Blocker-Reduction Pass
+
+- 对 MineStudio 工具链进行 bounded blocker-reduction：在 `/root/autodl-tmp` 环境中补齐小型 import 依赖与 OpenJDK，验证 `minestudio.utils` / `minestudio.online` 可导入，并记录 simulator reset 前仍受 `torch`、display / Xvfb 约束。
 
 ## Version C: Setup Blocked
 
