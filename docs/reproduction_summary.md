@@ -23,7 +23,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 | OpenHA / CrossAgent bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note | Conceptual bridge only; no weights, datasets, official rollout, SFT, or GRPO training. |
 | OpenHA/CrossAgent action-space taxonomy | Exploratory metadata/config-based analysis complete | Local task-name records, category/interface summaries, failure-mode notes, and manual sanity-check sample | Rule-based and preliminary; not official model evaluation or official benchmark-size reporting. |
 | World models / diffusion note | Reading direction documented | Concise world-model note | Next-step reading only; no world-model or diffusion reproduction. |
-| MineStudio setup | Bounded setup checks blocked | Smoke tests, second-pass install notes | Full dependency setup remains unresolved; simulator imports need more controlled setup. |
+| MineStudio minimal workflow smoke test | import/module smoke test passed; simulator rollout blocked | Clean no-deps editable install, top-level import, module inventory, simulator readiness check | Simulator import is blocked by missing dependencies and display/runtime support; no rollout was run. |
 | GPU sanity | Infrastructure check complete | Old torch failure documented; modern cu128 success documented | `torch 2.11.0+cu128` under `/root/autodl-tmp` supports `sm_120` and ran a small CUDA tensor workload. |
 
 ## Partially Blocked Official Systems
@@ -41,6 +41,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 - I added a paper/repo bridge from action representation to OpenHA/CrossAgent action-space hierarchy and GRPO-style post-training.
 - I added a metadata/config-based action-space taxonomy over local OpenHA/CrossAgent task-name records and representative Minecraft examples, with explicit scope limits.
 - I added world-model/diffusion notes as a future reading direction.
+- I ran a bounded MineStudio minimal workflow smoke test and documented the package-level success plus simulator blockers.
 - I documented blockers for official end-to-end reproduction attempts.
 - I kept external repos, environments, caches, large assets, and logs outside Git.
 - I validated a modern Blackwell-compatible PyTorch CUDA environment for small infrastructure checks.
