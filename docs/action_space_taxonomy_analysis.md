@@ -20,7 +20,7 @@ The analysis uses a local OpenHA repository snapshot outside this project reposi
 | Additional task source | `CrossAgent/STRL/data_processor/utils/task_list.json` and rollout-debug task directory names |
 | Scope | full local metadata-derived task names plus bounded representative additions |
 
-The structured metadata provided 1192 unique task names from `task_suc_rate.json`, 30 tasks from `task_list.json`, and 9 inferred rollout-debug task names. After de-duplication and adding representative tasks for shelter, cave exploration, furnace use, and long-horizon obtain examples, the analysis covers 1200 task rows.
+The structured metadata provided 1192 unique task names from `task_suc_rate.json`, 30 tasks from `task_list.json`, and 9 inferred rollout-debug task names. After de-duplication and adding representative tasks for shelter, cave exploration, furnace use, and long-horizon obtain examples, the final taxonomy artifact covers 1200 task rows and 1200 unique task names.
 
 ## Method
 
@@ -36,6 +36,19 @@ Each task is assigned:
 The labels are intentionally cautious. They are designed to surface action-space pressure, not to estimate official success rate.
 
 ## Quantitative Summary
+
+### Row And Unique-Task Accounting
+
+| Statistic | Value |
+| --- | ---: |
+| Total task rows | 1200 |
+| Unique task names | 1200 |
+| Duplicate task names | 0 |
+| Extra rows from duplicate task names | 0 |
+
+Duplicates do not exist in the final taxonomy CSV. Some upstream sources overlap conceptually because `task_suc_rate.json`, `task_list.json`, rollout-debug directory names, and bounded representative additions can describe similar Minecraft task families, but the analysis script de-duplicates exact task names before writing `task_taxonomy.csv`.
+
+All percentages in the category and interface tables below are computed over task rows. In the current artifact, this is numerically equivalent to percentages over unique task names because each row has a unique `task_name`.
 
 ### Category Distribution
 

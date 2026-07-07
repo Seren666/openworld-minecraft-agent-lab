@@ -4,11 +4,13 @@ This is a preliminary rule-based taxonomy over OpenHA/CrossAgent public task met
 
 ## Strongest Findings
 
-1. **1200 tasks were analyzed.** The task set is dominated by metadata-derived Minecraft tasks from public OpenHA/CrossAgent files, with a small representative supplement for missing task types.
+1. **1200 task rows and 1200 unique task names were analyzed.** The task set is dominated by metadata-derived Minecraft tasks from public OpenHA/CrossAgent files, with a small representative supplement for missing task types. The final CSV has no duplicate task names after exact-name de-duplication.
 2. **crafting accounts for 238 tasks (19.8%).** This category needs different interface support than a single fixed action space.
 3. **dynamic_action_space_switching is assigned to 463 tasks (38.6%).** This supports treating action-space choice as task- and stage-dependent.
 4. **Memory/prerequisite reasoning appears in 851 tasks (70.9%).** Crafting, smelting, mining with tool constraints, and long-horizon obtain tasks are especially sensitive to missing prerequisites.
 5. **Visual grounding appears in 737 tasks (61.4%).** Mining, combat, furnace use, navigation, and building tasks require target localization beyond text-only planning.
+
+Percentages are computed over task rows. For this artifact, row-level and unique-task percentages are identical because there are 1200 rows and 1200 unique task names.
 
 ## Cautious Hypotheses
 
