@@ -6,7 +6,7 @@ This document fits into the full repository story:
 planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
 ```
 
-The goal is not to claim full reproduction. The goal is to show how four papers expose the first four interfaces needed by open-world Minecraft agents. The latest-direction bridge extends this sequence toward hierarchical action-space learning in OpenHA/CrossAgent.
+The goal is not to claim complete system reproduction. The goal is to show how four papers expose the first four interfaces needed by open-world Minecraft agents. The latest-direction bridge extends this sequence toward hierarchical action-space learning in OpenHA/CrossAgent.
 
 ## Compact Comparison
 

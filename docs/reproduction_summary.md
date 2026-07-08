@@ -1,6 +1,6 @@
 # Reproduction Summary
 
-This repository focuses on research preparation, not claims of official benchmark reproduction. The main story is:
+This repository focuses on research preparation, not paper-author benchmark completion claims. The main story is:
 
 ```text
 planning -> memory -> visual grounding -> action representation -> hierarchical action-space learning
@@ -20,7 +20,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 | JARVIS-VLA audit | Bounded feasibility check complete | Official repo audit, vLLM/MineStudio rollout notes, syntax smoke | Official inference requires 7B-scale model serving, datasets, MineStudio, rendering, and careful output storage. |
 | JARVIS-VLA action demo | Lightweight local demo complete | Toy action schema, rule-based selector, generated Markdown trace | Demonstrates the VLA action-representation idea without official model checkpoints. |
 | JARVIS-VLA GPU action scorer | Toy GPU scorer complete | Tiny deterministic PyTorch scorer ran one forward pass on Blackwell | Infrastructure evidence only; not JARVIS-VLA inference. |
-| OpenHA / CrossAgent bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note | Conceptual bridge only; no weights, datasets, official rollout, SFT, or GRPO training. |
+| OpenHA / CrossAgent direction bridge | Paper/repo audit complete | Latest-direction bridge and OpenHA/CrossAgent note, with the taxonomy reported in the next row | Conceptual bridge; no weights, datasets, official rollout, SFT, or GRPO training. |
 | OpenHA/CrossAgent action-space taxonomy | Exploratory metadata/config-based analysis complete | Local task-name records, category/interface summaries, failure-mode notes, and manual sanity-check sample | Rule-based and preliminary; not official model evaluation or official benchmark-size reporting. |
 | World models / diffusion note | Reading direction documented | Concise world-model note | Next-step reading only; no world-model or diffusion reproduction. |
 | MineStudio minimal workflow smoke test | import/module smoke test improved; simulator rollout blocked | Clean editable install, small dependency blocker-reduction, module inventory, simulator readiness check | `cv2` blocker resolved and Java is available in the env; simulator import now blocks on `torch`, with display/Xvfb still missing. |
@@ -48,7 +48,7 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 
 ## Do Not Overstate
 
-- Do not claim official end-to-end reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, or MineStudio.
+- Do not claim paper-author-system completion for DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, or MineStudio.
 - Do not claim official OpenHA/CrossAgent execution, SFT, GRPO training, or world-model reproduction.
 - Do not claim official Minecraft task success.
 - Do not claim official model training or paper-metric matching.

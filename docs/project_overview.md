@@ -33,7 +33,7 @@ planning -> memory -> visual grounding -> action representation -> hierarchical 
 - Ran a tiny GPU-backed toy action scorer on the AutoDL Blackwell machine using a modern PyTorch CUDA 12.8 environment.
 - Added an OpenHA/CrossAgent bridge for action-space hierarchy, SFT, and GRPO-style post-training.
 - Added concise world-model and diffusion-model notes as future research directions.
-- Documented official reproduction blockers, including dependencies, checkpoints, datasets, simulator setup, rendering, and storage constraints.
+- Documented blockers for paper-author-system execution, including dependencies, checkpoints, datasets, simulator setup, rendering, and storage constraints.
 
 ## Key Findings So Far
 
@@ -47,7 +47,7 @@ planning -> memory -> visual grounding -> action representation -> hierarchical 
 
 ## Reproduction Scope
 
-- This repository does not claim full reproduction or official end-to-end reproduction of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, OpenHA/CrossAgent, or MineStudio.
+- This repository does not claim complete paper-author-system reproduction or end-to-end execution of DEPS, JARVIS-1, ROCKET-1, JARVIS-VLA, OpenHA/CrossAgent, or MineStudio.
 - It does not claim official Minecraft evaluation results.
 - It does not claim official model training, GRPO post-training, world-model reproduction, or paper-metric matching.
 - It does not commit model weights, checkpoints, datasets, raw videos, secrets, or external repository code.
