@@ -12,15 +12,6 @@ My research interest is how these interfaces connect in embodied decision-making
 
 This repository starts from CraftJarvis planning/memory/grounding/action-interface works and is being extended toward OpenHA/CrossAgent, GRPO post-training, and world-model-based agent learning.
 
-## For Quick Review
-
-- [docs/quick_review.md](docs/quick_review.md): Short entry point for what this repository is, what to read first, and what is not claimed.
-- [docs/action_space_taxonomy_analysis.md](docs/action_space_taxonomy_analysis.md): Exploratory OpenHA/CrossAgent metadata/config-based task taxonomy with source-scope clarification and manual sanity-check sample.
-- [docs/minestudio_smoke_test.md](docs/minestudio_smoke_test.md): Bounded MineStudio install/import and simulator-readiness smoke test with current blockers.
-- [docs/reproduction_summary.md](docs/reproduction_summary.md): Compact record of completed lightweight demos, audits, blockers, and evidence-supported scope.
-- [docs/latest_direction_bridge.md](docs/latest_direction_bridge.md): Research bridge from planning, memory, grounding, and VLA action prediction toward OpenHA/CrossAgent, GRPO, and world models.
-- [docs/four_interface_comparison.md](docs/four_interface_comparison.md): Comparison of planning, memory, visual grounding, and action representation interfaces.
-
 ## Current Focus
 
 - Long-horizon planning
@@ -29,6 +20,14 @@ This repository starts from CraftJarvis planning/memory/grounding/action-interfa
 - Vision-language-action representation
 - Hierarchical action-space learning and GRPO-style post-training
 - World-model and diffusion-model reading for future agent learning
+
+## For Quick Review
+
+- [docs/quick_review.md](docs/quick_review.md): One-page entry guide.
+- [docs/action_space_taxonomy_analysis.md](docs/action_space_taxonomy_analysis.md): Exploratory OpenHA/CrossAgent action-space taxonomy with source-scope clarification and 100-sample sanity check.
+- [docs/minestudio_smoke_test.md](docs/minestudio_smoke_test.md): MineStudio install/import smoke test and blocker-reduction notes.
+- [docs/reproduction_summary.md](docs/reproduction_summary.md): What was audited, what ran, and what remains blocked.
+- [docs/latest_direction_bridge.md](docs/latest_direction_bridge.md): Bridge from DEPS/JARVIS/ROCKET/JARVIS-VLA to OpenHA/CrossAgent and world-model directions.
 
 ## Progress
 

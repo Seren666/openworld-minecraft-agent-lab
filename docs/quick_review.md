@@ -34,9 +34,9 @@ DEPS / MC-Planner motivates dependency-aware planning. JARVIS-1 adds memory as a
 
 ## What Is Not Claimed
 
-- No paper-author benchmark run is reported.
+- No official benchmark reproduction is reported.
 - No model training is reported.
 - No checkpoint inference is reported.
 - No official Minecraft evaluation result is reported.
-- No complete MineStudio simulator rollout is reported.
+- No full MineStudio rollout is reported.
 - No large weights, datasets, checkpoints, raw videos, external repository code, credentials, or private machine details are committed.
